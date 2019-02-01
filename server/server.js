@@ -14,6 +14,7 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
+const path = require('path'); // this ensures the path will join, even if too many/too few slashes
 // Seperated Routes for each Resource
 const usersRoutes = require("../routes/users");
 
@@ -28,14 +29,13 @@ app.use(knexLogger(knex));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
-  src: __dirname + "/../styles",
-  dest: __dirname + "/../public/styles",
+  src: path.join(__dirname, "/../styles"),
+  dest: path.join(__dirname, "/../public/styles"),
   debug: true,
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
-console.log('src', __dirname + "/styles",
-  'dest', __dirname + "/public/styles");
+
 // Mount all resource routes
 app.use("/users", usersRoutes(knex));
 
