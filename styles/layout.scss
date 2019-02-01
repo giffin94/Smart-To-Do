@@ -8,55 +8,7 @@ main{
   margin: 0 auto;
 }
 
-.grid-container{
-  display: grid;
-  grid-template-rows: 1fr 1fr 3fr 3fr 3fr 1fr;
-  grid-template-columns: auto;
-  grid-template-areas:
-    ". . . ."
-    ". new new ."
-    ". eat watch ."
-    ". read buy ."
-    ". uncat done ."
-    ". . . .";
-  grid-row-gap: 10px;
-  grid-column-gap: 10px;
-  > * {
-    border: 1px red solid;
-    border-radius: 5px;
-  }
-  .new-to-do {
-    grid-area: new;
-    display: flex;
-    justify-content: center;
-    > * {
-      margin: 0 10px;
-    }
-  }
 
-  .eat {
-    grid-area: eat;
-  }
-
-  .watch {
-    grid-area: watch;
-  }
-
-  .read {
-    grid-area: read;
-  }
-
-  .buy {
-    grid-area: buy;
-  }
-
-  .uncat {
-    grid-area: uncat;
-  }
-
-  .done {
-    grid-area: done;
-  }
-}
 
 @import 'partials/nav-bar';
+@import 'partials/grid-container';
