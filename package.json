@@ -2,7 +2,7 @@
   "name": "node-skeleton",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "./server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
@@ -19,7 +19,7 @@
     "knex": "^0.11.7",
     "knex-logger": "^0.1.0",
     "morgan": "^1.7.0",
-    "node-sass-middleware": "^0.9.8",
+    "node-sass-middleware": "^0.11.0",
     "pg": "^6.0.2"
   },
   "devDependencies": {

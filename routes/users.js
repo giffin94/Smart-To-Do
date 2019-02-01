@@ -1,18 +1,26 @@
 "use strict";
 
 const express = require('express');
-const router  = express.Router();
+const userRoutes  = express.Router();
 
 module.exports = (knex) => {
 
-  router.get("/", (req, res) => {
-    knex
-      .select("*")
-      .from("users")
-      .then((results) => {
-        res.json(results);
-    });
+  userRoutes.get('/', (request, response) => {
+    knex('to_dos')
+      .leftJoin('categories', 'categories.id', '=', 'cat_id')
+      .where('user_id', '1')
+      .select('to_do', 'priority', 'category')
+      .then((rows) => {
+        if (rows.length) {
+          response.json(rows);
+        } else {
+          console.log('No results found!');
+        }
+      })
+      .finally(() => {
+        knex.destroy();
+      });
   });
 
-  return router;
+  return userRoutes;
 }
