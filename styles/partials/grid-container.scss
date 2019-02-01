@@ -23,7 +23,9 @@
       margin: 0 10px;
     }
   }
-
+  .list-title {
+    border-bottom: 1px solid black;
+  }
   .eat {
     grid-area: eat;
   }

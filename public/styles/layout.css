@@ -53,6 +53,10 @@ main {
   margin: 0 10px;
 }
 
+.grid-container .list-title {
+  border-bottom: 1px solid black;
+}
+
 .grid-container .eat {
   grid-area: eat;
 }
