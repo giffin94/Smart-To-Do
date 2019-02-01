@@ -38,7 +38,7 @@ main {
   grid-column-gap: 10px;
 }
 
-.grid-container > * {
+.grid-container > *:not(.new-to-do) {
   border: 1px red solid;
   border-radius: 5px;
 }
