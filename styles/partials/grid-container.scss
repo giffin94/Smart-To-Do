@@ -12,18 +12,21 @@
   grid-row-gap: 10px;
   grid-column-gap: 10px;
   > *:not(.new-to-do) {
-    border: 1px red solid;
+    border: 1px black solid;
     border-radius: 5px;
+    background-color: white;
   }
-  .new-to-do {
+  form.new-to-do {
     grid-area: new;
     display: flex;
     justify-content: center;
     > * {
       margin: 0 10px;
+      border-radius: 5px;
     }
   }
   .list-title {
+    text-align: center;
     border-bottom: 1px solid black;
   }
   .eat {
