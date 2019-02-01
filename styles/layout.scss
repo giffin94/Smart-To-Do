@@ -1,7 +1,103 @@
+
 body {
   background-color: #EEE;
+}
 
-  h1 {
-    color: #244751;
+.nav-container{
+  display: flex;
+  background-color: tomato;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  .nav-profile-btn{
+    flex: 1;
+  }
+  .nav-greeting{
+    flex: 10;
+    text-align: center;
+  }
+  .nav-logout-btn{
+    flex: 1;
   }
 }
+
+.grid-container{
+  display: grid;
+  grid-template-rows: 1fr 3fr 3fr 3fr 3fr;
+  grid-template-columns: auto;
+  grid-template-areas:
+    ". new new ."
+    ". eat watch ."
+    ". read buy ."
+    ". uncat done .";
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  > * {
+    border: 1px red solid;
+  }
+}
+
+.new-to-do{
+  grid-area: new;
+}
+
+.eat {
+  grid-area: eat;
+}
+
+.watch {
+  grid-area: watch;
+}
+
+.read {
+  grid-area: read;
+}
+
+.buy {
+  grid-area: buy;
+}
+
+.uncat {
+  grid-area: uncat;
+}
+
+.done {
+  grid-area: done;
+}
+
+/*.form-container{*/
+  /*display: flex;*/
+ /* .new-to-do{
+
+  }
+}
+
+.all-lists{
+  display: flex;
+  flex-wrap: wrap;
+  > *{
+    border: 1px solid black;
+    text-align: center;
+  }
+  .eat{
+    flex: 1;
+  }
+  .watch{
+    flex: 1;
+  }
+  .read{
+    flex: 1;
+  }
+  .buy{
+    flex: 1;
+  }
+  .uncat{
+    flex: 1;
+  }
+  .done{
+    flex: 1;
+  }
+}*/
+
+
+@import "node_modules/bootstrap/scss/bootstrap";

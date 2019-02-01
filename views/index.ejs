@@ -2,16 +2,81 @@
 <html lang="en">
   <head>
     <title>Home Page</title>
+    <!-- External CSS (bootstrap). Do not move. Should be first of all linked stylesheets. -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
+    <!-- Internal CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+
+    <!-- Internal, custom CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
+    <!-- Internal JS. Shouldn't jQuery be a CDN link? -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+
+    <!-- Meta tag for Bootstrap's @media queries. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+    <header>
+      <nav class="nav-container">
+        <button class="nav-profile-btn">profile</button>
+        <span class="nav-greeting">Hello User!</span>
+        <button class="nav-logout-btn">logout</button>
+      </nav>
+    </header>
+
+    <main class="grid-container">
+      <form class="new-to-do">
+        <input type="text" name="to-do">
+        <input type="submit" value="ADD IT">
+      </form>
+      <div class="eat">
+        <span class="list-title">EAT</span>
+        <ul class="eat">
+          <!-- <li class="list-item"></li> -->
+        </ul>
+      </div>
+      <div class="watch">
+        <span class="list-title">WATCH</span>
+        <ul class="watch">
+          <!-- <li class="list-item"></li> -->
+        </ul></div>
+      <div class="read">
+        <span class="list-title">READ</span>
+        <ul class="read">
+          <!-- <li class="list-item"></li> -->
+        </ul>
+      </div>
+      <div class="buy">
+        <span class="list-title">BUY</span>
+        <ul class="buy">
+          <!-- <li class="list-item"></li> -->
+        </ul>
+      </div>
+      <div class="uncat">
+        <span class="list-title">UNCAT</span>
+        <ul class="uncat">
+          <!-- <li class="list-item"></li> -->
+        </ul>
+      </div>
+      <div class="done">
+        <span class="list-title">DONE</span>
+        <ul class="done">
+          <!-- <li class="list-item"></li> -->
+        </ul>
+      </div>
+    </main>
+
+    <footer>© 2019</footer>
+
+
+
+    <!-- JS files to support Bootstrap. Leave here. Leave in this order. This may not work as I have removed BS's jQuery link (bc it was breaking ajax) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   </body>
 </html>
