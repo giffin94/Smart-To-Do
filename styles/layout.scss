@@ -7,23 +7,6 @@ main{
   background-color: #EEE;
   margin: 0 auto;
 }
-.nav-container{
-  display: flex;
-  background-color: tomato;
-  padding: 10px;
-  align-items: center;
-  justify-content: space-between;
-  .nav-profile-btn{
-    flex: 1;
-  }
-  .nav-greeting{
-    flex: 10;
-    text-align: center;
-  }
-  .nav-logout-btn{
-    flex: 1;
-  }
-}
 
 .grid-container{
   display: grid;
@@ -76,41 +59,4 @@ main{
   }
 }
 
-
-
-/*.form-container{*/
-  /*display: flex;*/
- /* .new-to-do{
-
-  }
-}
-
-.all-lists{
-  display: flex;
-  flex-wrap: wrap;
-  > *{
-    border: 1px solid black;
-    text-align: center;
-  }
-  .eat{
-    flex: 1;
-  }
-  .watch{
-    flex: 1;
-  }
-  .read{
-    flex: 1;
-  }
-  .buy{
-    flex: 1;
-  }
-  .uncat{
-    flex: 1;
-  }
-  .done{
-    flex: 1;
-  }
-}*/
-
-
-/*@import "node_modules/bootstrap/scss/bootstrap";*/
+@import 'partials/nav-bar';

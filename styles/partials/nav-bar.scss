@@ -1,0 +1,17 @@
+.nav-container {
+  display: flex;
+  background-color: tomato;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  .nav-profile-btn {
+    flex: 1;
+  }
+  .nav-greeting {
+    flex: 10;
+    text-align: center;
+  }
+  .nav-logout-btn {
+    flex: 1;
+  }
+}
