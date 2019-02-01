@@ -1,10 +1,22 @@
-@import "node_modules/bootstrap/scss/bootstrap";
 
 body {
   background-color: #EEE;
-
-  h1 {
-    color: red;
+  .nav-container{
+    display: flex;
+    background-color: tomato;
+    padding: 10px;
+    align-items: center;
+    .nav-profile-btn{
+      flex: 1;
+    }
+    .nav-greeting{
+      flex: 10;
+      text-align: center;
+    }
+    .nav-logout-btn{
+      flex: 1;
+    }
   }
 }
 
+@import "node_modules/bootstrap/scss/bootstrap";
