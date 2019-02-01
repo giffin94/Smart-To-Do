@@ -6,5 +6,5 @@ $(() => {
     for(row of rows) {
       $("<div>").text(row.to_do + ", category: " + row.category).appendTo($("body"));
     }
-  });;
+  });
 });

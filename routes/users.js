@@ -17,9 +17,6 @@ module.exports = (knex) => {
           console.log('No results found!');
         }
       })
-      .finally(() => {
-        knex.destroy();
-      });
   });
 
   return userRoutes;
