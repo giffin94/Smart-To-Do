@@ -31,7 +31,7 @@ main {
 
 .grid-container {
   display: grid;
-  grid-template-rows: 1fr 1fr 3fr 3fr 3fr 1fr;
+  grid-template-rows: 15px 30px repeat(3, 150px);
   grid-template-columns: auto 1fr 1fr auto;
   grid-template-areas: ". . . ." ". new new ." ". eat watch ." ". read buy ." ". uncat finished ." ". . . .";
   grid-row-gap: 20px;
