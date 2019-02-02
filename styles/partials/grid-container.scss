@@ -7,7 +7,7 @@
     ". new new ."
     ". eat watch ."
     ". read buy ."
-    ". uncat done ."
+    ". uncat finished ."
     ". . . .";
   grid-row-gap: 20px;
   grid-column-gap: 20px;
@@ -45,14 +45,15 @@
     grid-area: uncat;
   }
 
-  .done {
-    grid-area: done;
+  .finished {
+    grid-area: finished;
   }
   .list-title {
     text-align: center;
     border-bottom: 2px solid black;
   }
   .list-item {
+    display: flex;
     border-bottom: 1px solid black;
   }
 }
