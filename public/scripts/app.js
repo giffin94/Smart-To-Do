@@ -17,9 +17,21 @@ $(() => {
         thisClass = 'uncat';
       }
       if (row.priority) {
-        $('<span>').text(row.to_do).addClass(`${thisClass} priority list-item`).prependTo(`div#${thisClass}`);
+        $('<div>').addClass('list-item')
+        .append($('<span>').addClass('check').text('V')
+          .append($('<span>').addClass(`${thisClass} priority list-item`).text(row.to_do)
+          .append($('<span>').addClass('options').text('&'))
+          )
+        )
+        .prependTo(`div#${thisClass}`);
       } else {
-        $('<span>').text(row.to_do).addClass(`${thisClass} list-item`).appendTo(`div#${thisClass}`);
+        $('<div>').addClass('list-item')
+        .append($('<span>').addClass('check').text('V')
+          .append($('<span>').addClass(`${thisClass} list-item`).text(row.to_do)
+          .append($('<span>').addClass('options').text('&'))
+          )
+        )
+        .prependTo(`div#${thisClass}`);
       }
     }
   });
