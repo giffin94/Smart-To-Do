@@ -32,13 +32,12 @@ function searchYelp(searchString) {
 }
 
 const wiki = require('node-wikipedia');
-const wikiQuery = 'banana';
-searchWikip(wikiQuery);
-function searchWikip (searchString) {
 
+function searchWikip (searchString) {
   wiki.page.data(searchString, { content: true }, (res) => {
+
       const wikiInfobox = res.text['*'] // for movies, books
-        .replace('<table class=', 'STRINGSPLITTER')
+        .replace('<table', 'STRINGSPLITTER')
         .replace('</tbody></table>', 'STRINGSPLITTER')
         .split('STRINGSPLITTER')[1].toLowerCase();
 
@@ -47,12 +46,46 @@ function searchWikip (searchString) {
         .replace('</p><p>', 'STRINGSPLITTER \n\n\n')
         .split('STRINGSPLITTER')[1].toLowerCase();
 
-      console.log('TO READ', wikiInfobox.includes('publisher'));
-      console.log('TO WATCH', wikiInfobox.includes('starring'));
-      console.log('TO EAT', wikiFirstPara.includes('food') || wikiFirstPara.includes('edible'));
-      // console.log(wikiInfobox);
-      // console.log(wikiFirstPara);
+      const wikiWholeBody = res.text['*'];
+
+      if (bookChecker(wikiInfobox)) {
+        return console.log('It\'s a book!');
+      }
+      if (movieChecker(wikiInfobox)) {
+        return console.log('It\'s a movie!');
+      }
+      if (buyChecker(wikiFirstPara) && !personChecker(wikiInfobox)) {
+        return console.log('It\'s a thing to buy.');
+      }
+      if (buyChecker(wikiWholeBody) && !personChecker(wikiInfobox)) {
+        return console.log('It\'s a thing to buy.');
+      }
+      if (personChecker(wikiInfobox)) {
+        return console.log('It\'s a person.');
+      }
+      return console.log('to be categorized');
   });
+
+}
+
+// HELPERS
+function bookChecker (wikiString) {
+  return wikiString.includes('publisher');
+}
+function movieChecker (wikiString) {
+  return wikiString.toLowerCase().includes('starring');
+}
+function buyChecker (wikiString) {
+  const termsArr = ['edible', 'furniture', 'garment', 'patent'];
+  for (const term of termsArr) {
+    if (wikiString.includes(term)) {
+      return true;
+    }
+  }
+  return false;
+}
+function personChecker (wikiString) {
+  return wikiString.includes('born');
 }
 
 module.exports = () => {
@@ -60,10 +93,10 @@ module.exports = () => {
   apiRoutes.get('/:search', (request, response) => {
     let searchTerm = request.params.search;
     searchTerm = searchTerm.replace("to-do=", "");
-    console.log(searchTerm);
+    // console.log(searchTerm);
+    searchWikip(searchTerm);
     // searchYelp(searchTerm);
     response.send(200);
-    // searchWikip(searchTerm);
   });
 
   return apiRoutes;
