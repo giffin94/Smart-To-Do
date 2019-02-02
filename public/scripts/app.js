@@ -1,12 +1,4 @@
 $(() => {
-  const catLookup = {
-    '1': 'read',
-    '2': 'eat',
-    '3': 'buy',
-    '4': 'watch',
-    '5': 'done'
-  };
-
   $.ajax({
     method: 'GET',
     url: '/your-lists'
