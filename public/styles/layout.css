@@ -87,7 +87,12 @@ form.new-to-do > * {
   border-bottom: 2px solid black;
 }
 
-.list-item {
+.list-items {
+  height: 120px;
+  overflow: scroll;
+}
+
+.list-items .list-item {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid black;
