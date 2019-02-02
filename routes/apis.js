@@ -31,13 +31,36 @@ function searchYelp(searchString) {
   });
 }
 
+const wiki = require('node-wikipedia');
+const wikiQuery = 'banana';
+
+function searchWikip (searchString) {
+  wiki.page.data(query, { content: true }, (res) => {
+      const wikiInfobox = res.text['*'] // for movies, books
+        .replace('<table class=', 'STRINGSPLITTER')
+        .replace('</tbody></table>', 'STRINGSPLITTER')
+        .split('STRINGSPLITTER')[1].toLowerCase();
+
+      const wikiFirstPara = res.text['*'] // for food (and other)
+        .replace('<p>', 'STRINGSPLITTER \n\n\n')
+        .replace('</p><p>', 'STRINGSPLITTER \n\n\n')
+        .split('STRINGSPLITTER')[1].toLowerCase();
+
+      console.log('TO READ', wikiInfobox.includes('publisher'));
+      console.log('TO WATCH', wikiInfobox.includes('starring'));
+      console.log('TO EAT', wikiFirstPara.includes('food') || wikiFirstPara.includes('edible'));
+      // console.log(wikiInfobox);
+      console.log(wikiFirstPara);
+  });
+}
+
 module.exports = () => {
 
   apiRoutes.get('/:search', (request, response) => {
     let searchTerm = request.params.search;
     searchTerm = searchTerm.replace("to-do=", "");
     console.log(searchTerm);
-    // searchYelp(searchTerm); 
+    // searchYelp(searchTerm);
     response.send(200);
     // searchWikip(searchTerm);
   });
