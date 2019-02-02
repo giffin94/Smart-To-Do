@@ -33,9 +33,10 @@ function searchYelp(searchString) {
 
 const wiki = require('node-wikipedia');
 const wikiQuery = 'banana';
-
+searchWikip(wikiQuery);
 function searchWikip (searchString) {
-  wiki.page.data(query, { content: true }, (res) => {
+
+  wiki.page.data(searchString, { content: true }, (res) => {
       const wikiInfobox = res.text['*'] // for movies, books
         .replace('<table class=', 'STRINGSPLITTER')
         .replace('</tbody></table>', 'STRINGSPLITTER')
@@ -50,7 +51,7 @@ function searchWikip (searchString) {
       console.log('TO WATCH', wikiInfobox.includes('starring'));
       console.log('TO EAT', wikiFirstPara.includes('food') || wikiFirstPara.includes('edible'));
       // console.log(wikiInfobox);
-      console.log(wikiFirstPara);
+      // console.log(wikiFirstPara);
   });
 }
 
