@@ -1,4 +1,12 @@
-.grid-container{
+.input_grid {
+  display: grid;
+  /*grid-template-rows: auto;*/
+  grid-template-columns: auto 4fr 2fr auto;
+  grid-template-areas:
+    ". input btn .";
+}
+
+.lists-grid {
   display: grid;
   grid-template-rows: 15px 30px repeat(3, 150px);
   grid-template-columns: auto repeat(2, 200px) auto;
@@ -16,9 +24,7 @@
     border-radius: 5px;
     background-color: white;
   }
-  .new-to-do {
-    grid-area: new;
-  }
+/* .new-to-do imported from partial */
   .eat {
     grid-area: eat;
   }
@@ -36,14 +42,6 @@
   }
   .finished {
     grid-area: finished;
-  }
-}
-form.new-to-do {
-  display: flex;
-  justify-content: center;
-  > * {
-    margin: 0 10px;
-    border-radius: 5px;
   }
 }
 
@@ -71,3 +69,4 @@ form.new-to-do {
     }
   }
 }
+@import 'input-field'

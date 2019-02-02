@@ -1,0 +1,15 @@
+form.new-to-do {
+  grid-area: new; /* needed for grid */
+  display: flex;
+  justify-content: center;
+  > * {
+    margin: 0 10px;
+    border-radius: 5px;
+  }
+  input.input {
+
+  }
+  input.button {
+
+  }
+}

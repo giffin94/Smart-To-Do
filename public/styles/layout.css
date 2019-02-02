@@ -29,57 +29,51 @@ main {
   flex: 1;
 }
 
-.grid-container {
+.input_grid {
+  display: grid;
+  /*grid-template-rows: auto;*/
+  grid-template-columns: auto 4fr 2fr auto;
+  grid-template-areas: ". input btn .";
+}
+
+.lists-grid {
   display: grid;
   grid-template-rows: 15px 30px repeat(3, 150px);
   grid-template-columns: auto repeat(2, 200px) auto;
   grid-template-areas: ". . . ." "new new new new" ". eat watch ." ". read buy ." ". uncat finished ." ". . . .";
   grid-row-gap: 20px;
   grid-column-gap: 20px;
+  /* .new-to-do imported from partial */
 }
 
-.grid-container > *:not(.new-to-do) {
+.lists-grid > *:not(.new-to-do) {
   border: 2px black solid;
   border-radius: 5px;
   background-color: white;
 }
 
-.grid-container .new-to-do {
-  grid-area: new;
-}
-
-.grid-container .eat {
+.lists-grid .eat {
   grid-area: eat;
 }
 
-.grid-container .watch {
+.lists-grid .watch {
   grid-area: watch;
 }
 
-.grid-container .read {
+.lists-grid .read {
   grid-area: read;
 }
 
-.grid-container .buy {
+.lists-grid .buy {
   grid-area: buy;
 }
 
-.grid-container .uncat {
+.lists-grid .uncat {
   grid-area: uncat;
 }
 
-.grid-container .finished {
+.lists-grid .finished {
   grid-area: finished;
-}
-
-form.new-to-do {
-  display: flex;
-  justify-content: center;
-}
-
-form.new-to-do > * {
-  margin: 0 10px;
-  border-radius: 5px;
 }
 
 .list-title {
@@ -104,4 +98,16 @@ form.new-to-do > * {
   max-width: 60%;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+form.new-to-do {
+  grid-area: new;
+  /* needed for grid */
+  display: flex;
+  justify-content: center;
+}
+
+form.new-to-do > * {
+  margin: 0 10px;
+  border-radius: 5px;
 }
