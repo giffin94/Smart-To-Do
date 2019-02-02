@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
       { id: 2, category: 'eat' },
       { id: 3, category: 'buy' },
       { id: 4, category: 'watch' },
-      { id: 5, category: 'finished' } // tbd: should we have uncat?
+      { id: 5, category: 'finished' }
     ]); 
   })
     .then(() => {
@@ -30,8 +30,20 @@ exports.seed = function(knex, Promise) {
         { to_do: 'Spiderverse', priority: false, user_id: 1, cat_id: 4 },
         { to_do: 'bananas', priority: false, user_id: 1, cat_id: 3 },
         { to_do: 'Seventeen Magazine', priority: true, user_id: 1, cat_id: 1 },
-        { to_do: 'pants', priority: false, user_id: 1, cat_id: 5 },
-        { to_do: 'spaceman', priority: true, user_id: 1, cat_id: null }
+        { to_do: 'shoes', priority: false, user_id: 1, cat_id: 5 },
+        { to_do: 'something_crazy', priority: true, user_id: 1, cat_id: null },
+        { to_do: 'Cactus Club', priority: false, user_id: 1, cat_id: 2 },
+        { to_do: 'Captain America', priority: false, user_id: 1, cat_id: 4 },
+        { to_do: 'catfood', priority: false, user_id: 1, cat_id: 3 },
+        { to_do: 'Goosebumps', priority: true, user_id: 1, cat_id: 1 },
+        { to_do: 'shirts', priority: false, user_id: 1, cat_id: 5 },
+        { to_do: 'something_unexpected', priority: true, user_id: 1, cat_id: null },
+        { to_do: 'Wendy\'s', priority: false, user_id: 1, cat_id: 2 },
+        { to_do: 'Avengers', priority: false, user_id: 1, cat_id: 4 },
+        { to_do: 'coffee', priority: false, user_id: 1, cat_id: 3 },
+        { to_do: 'To Kill a Mockingbird', priority: true, user_id: 1, cat_id: 1 },
+        { to_do: 'oreos', priority: false, user_id: 1, cat_id: 5 },
+        { to_do: 'something_unusual', priority: true, user_id: 1, cat_id: null }
       ])
     })
 };

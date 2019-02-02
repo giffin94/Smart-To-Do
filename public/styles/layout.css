@@ -33,7 +33,7 @@ main {
   display: grid;
   grid-template-rows: 1fr 1fr 3fr 3fr 3fr 1fr;
   grid-template-columns: auto;
-  grid-template-areas: ". . . ." ". new new ." ". eat watch ." ". read buy ." ". uncat done ." ". . . .";
+  grid-template-areas: ". . . ." ". new new ." ". eat watch ." ". read buy ." ". uncat finished ." ". . . .";
   grid-row-gap: 20px;
   grid-column-gap: 20px;
 }
@@ -75,8 +75,8 @@ main {
   grid-area: uncat;
 }
 
-.grid-container .done {
-  grid-area: done;
+.grid-container .finished {
+  grid-area: finished;
 }
 
 .grid-container .list-title {
