@@ -1,4 +1,8 @@
+// import { get } from "http";
+
 $(() => {
+  const itemForm = $(".new-to-do");
+
   function renderLists(rows) {
     for(row of rows) {
       let thisClass = row.category;
@@ -28,6 +32,14 @@ $(() => {
     renderLists(rows);
   });
 
+  itemForm.on("submit", function(event) {
+    event.preventDefault();
+    let query = $(this).serialize();
+    $.ajax({
+      method: 'GET',
+      url: `/apis/${query}`
+    })
+  })
   
 
 });
