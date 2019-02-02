@@ -1,8 +1,5 @@
 $(() => {
-  $.ajax({
-    method: 'GET',
-    url: '/your-lists'
-  }).done((rows) => {
+  function renderLists(rows) {
     for(row of rows) {
       let thisClass = row.category;
       if (!thisClass) {
@@ -22,7 +19,17 @@ $(() => {
         .appendTo(`div#${thisClass}`);
       }
     }
+  }
+
+  $.ajax({
+    method: 'GET',
+    url: '/your-lists'
+  }).done((rows) => {
+    renderLists(rows);
   });
+
+  
+
 });
 
 
