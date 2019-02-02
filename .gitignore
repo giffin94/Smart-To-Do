@@ -4,3 +4,4 @@ node_modules/
 *.log
 *.sqlite3
 NEXT.md
+/public/scripts/test.js
