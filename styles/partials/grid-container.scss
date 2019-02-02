@@ -1,10 +1,10 @@
 .grid-container{
   display: grid;
   grid-template-rows: 15px 30px repeat(3, 150px);
-  grid-template-columns: auto 1fr 1fr auto;
+  grid-template-columns: auto repeat(2, 200px) auto;
   grid-template-areas:
     ". . . ."
-    ". new new ."
+    "new new new new"
     ". eat watch ."
     ". read buy ."
     ". uncat finished ."
@@ -47,7 +47,6 @@ form.new-to-do {
   }
 }
 
-
 .list-title {
   text-align: center;
   border-bottom: 2px solid black;
@@ -63,6 +62,10 @@ form.new-to-do {
     .check {
     }
     .list-text {
+      overflow: scroll;
+      max-width: 60%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .options {
     }

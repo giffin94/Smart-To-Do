@@ -32,8 +32,8 @@ main {
 .grid-container {
   display: grid;
   grid-template-rows: 15px 30px repeat(3, 150px);
-  grid-template-columns: auto 1fr 1fr auto;
-  grid-template-areas: ". . . ." ". new new ." ". eat watch ." ". read buy ." ". uncat finished ." ". . . .";
+  grid-template-columns: auto repeat(2, 200px) auto;
+  grid-template-areas: ". . . ." "new new new new" ". eat watch ." ". read buy ." ". uncat finished ." ". . . .";
   grid-row-gap: 20px;
   grid-column-gap: 20px;
 }
@@ -97,4 +97,11 @@ form.new-to-do > * {
   justify-content: space-between;
   border-bottom: 1px solid black;
   padding: 0 10px;
+}
+
+.list-items .list-item .list-text {
+  overflow: scroll;
+  max-width: 60%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
