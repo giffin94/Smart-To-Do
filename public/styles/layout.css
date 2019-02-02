@@ -34,12 +34,12 @@ main {
   grid-template-rows: 1fr 1fr 3fr 3fr 3fr 1fr;
   grid-template-columns: auto;
   grid-template-areas: ". . . ." ". new new ." ". eat watch ." ". read buy ." ". uncat done ." ". . . .";
-  grid-row-gap: 10px;
-  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
 }
 
 .grid-container > *:not(.new-to-do) {
-  border: 1px black solid;
+  border: 2px black solid;
   border-radius: 5px;
   background-color: white;
 }
@@ -53,11 +53,6 @@ main {
 .grid-container form.new-to-do > * {
   margin: 0 10px;
   border-radius: 5px;
-}
-
-.grid-container .list-title {
-  text-align: center;
-  border-bottom: 1px solid black;
 }
 
 .grid-container .eat {
@@ -82,4 +77,13 @@ main {
 
 .grid-container .done {
   grid-area: done;
+}
+
+.grid-container .list-title {
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+
+.grid-container .list-item {
+  border-bottom: 1px solid black;
 }

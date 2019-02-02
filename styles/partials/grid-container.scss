@@ -9,10 +9,10 @@
     ". read buy ."
     ". uncat done ."
     ". . . .";
-  grid-row-gap: 10px;
-  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
   > *:not(.new-to-do) {
-    border: 1px black solid;
+    border: 2px black solid;
     border-radius: 5px;
     background-color: white;
   }
@@ -24,10 +24,6 @@
       margin: 0 10px;
       border-radius: 5px;
     }
-  }
-  .list-title {
-    text-align: center;
-    border-bottom: 1px solid black;
   }
   .eat {
     grid-area: eat;
@@ -51,5 +47,12 @@
 
   .done {
     grid-area: done;
+  }
+  .list-title {
+    text-align: center;
+    border-bottom: 2px solid black;
+  }
+  .list-item {
+    border-bottom: 1px solid black;
   }
 }
