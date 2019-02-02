@@ -26,8 +26,8 @@ exports.seed = function(knex, Promise) {
     })
     .then(() => {
       return knex('to_dos').insert([ // review schema/ERD
-        { to_do: 'McDonald\'s', priority: false, user_id: 1, cat_id: 2 },
-        { to_do: 'Spiderverse', priority: false, user_id: 1, cat_id: 4 },
+        { to_do: 'McDonald\'s', priority: true, user_id: 1, cat_id: 2 },
+        { to_do: 'Spiderverse', priority: true, user_id: 1, cat_id: 4 },
         { to_do: 'bananas', priority: false, user_id: 1, cat_id: 3 },
         { to_do: 'Seventeen Magazine', priority: true, user_id: 1, cat_id: 1 },
         { to_do: 'shoes', priority: false, user_id: 1, cat_id: 5 },
