@@ -39,6 +39,7 @@ module.exports = () => {
     let searchTerm = request.params.search;
     searchTerm = searchTerm.replace("to-do=", "");
     console.log(searchTerm);
+    searchYelp(searchTerm);
     response.send(200);
     // searchYelp(searchTerm);
     // searchWikip(searchTerm);
