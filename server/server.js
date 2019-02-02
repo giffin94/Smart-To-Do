@@ -15,12 +15,11 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 const path = require('path'); // this ensures the path will join, even if too many/too few slashes
+
 // Seperated Routes for each Resource
 const usersRoutes = require("../routes/users");
+const apiRoutes = require("../routes/apis");
 
-// Load the logger first so all (static) HTTP requests are logged to STDOUT
-// 'dev' = Concise output colored by response status for development use.
-//         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
@@ -36,10 +35,9 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
-// Mount all resource routes
 app.use("/your-lists", usersRoutes(knex));
+app.use("/apis", apiRoutes());
 
-// Home page
 app.get("/", (req, res) => {
   res.render("index");
 });
