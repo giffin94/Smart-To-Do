@@ -22,6 +22,7 @@
     "knex-logger": "^0.1.0",
     "morgan": "^1.7.0",
     "node-sass-middleware": "^0.11.0",
+    "node-wikipedia": "0.0.2",
     "omdb-client": "^2.0.0",
     "pg": "^6.0.2",
     "popper.js": "^1.14.7",
