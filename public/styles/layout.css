@@ -55,7 +55,7 @@ nav.nav-container .nav-logout-btn {
 }
 
 .lists-grid > *:not(.new-to-do) {
-  border: 2px #E7717d solid;
+  border: 2px #E7717D solid;
   /*border-radius: 5px;*/
   background-color: white;
   position: relative;
@@ -146,7 +146,6 @@ form.new-to-do {
   /* needed for grid */
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
 }
 
 form.new-to-do > * {
@@ -156,4 +155,14 @@ form.new-to-do > * {
 
 form.new-to-do input.input {
   width: 60%;
+}
+
+form.new-to-do input.button {
+  border: 1px solid #7E685A;
+}
+
+form.new-to-do :hover:not(.input) {
+  cursor: pointer;
+  background: #7E685A;
+  color: white;
 }
