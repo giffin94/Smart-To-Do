@@ -101,16 +101,18 @@ main {
   white-space: nowrap;
 }
 
-.drop-down {
+/*.drop-down {
   display: none;
   border: 1px solid black;
   border-radius: 5px;
   background-color: white;
   position: absolute;
-  top: -5px;
+  top: -2px;
   left: 110px;
-}
-
+  .delete-option {
+    border-top: 1px solid black;
+  }
+}*/
 form.new-to-do {
   grid-area: new;
   /* needed for grid */
