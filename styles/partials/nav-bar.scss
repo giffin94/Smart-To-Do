@@ -1,7 +1,12 @@
-.nav-container {
-  display: flex;
+nav.nav-container {
+  top: 0;
+  position: fixed;
+  height: $nav-height;
+  width: 100%;
   background-color: #E7717D;
   padding: 10px;
+  z-index: 100;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   .nav-profile-btn {

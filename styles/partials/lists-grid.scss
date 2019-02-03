@@ -1,11 +1,11 @@
-.input_grid {
-  display: grid;
+/*.input_grid {*/
+  /*display: grid;*/
   /*grid-template-rows: auto;*/
-  grid-template-columns: auto 4fr 2fr auto;
+/*  grid-template-columns: auto 4fr 2fr auto;
   grid-template-areas:
     ". input btn .";
 }
-
+*/
 .lists-grid {
   display: grid;
   grid-template-rows: 15px 30px repeat(3, 150px);
@@ -20,8 +20,8 @@
   grid-row-gap: 20px;
   grid-column-gap: 20px;
   > *:not(.new-to-do) {
-    border: 2px black solid;
-    border-radius: 5px;
+    border: 2px #E7717d solid;
+    /*border-radius: 5px;*/
     background-color: white;
     position: relative; /* needed for drop down menu position */
   }

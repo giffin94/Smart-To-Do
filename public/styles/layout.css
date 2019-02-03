@@ -1,41 +1,49 @@
 body {
-  background-color: white;
+  background-color: #E7717D;
 }
 
 main {
   width: 90vmin;
   background-color: #C2CAD0;
-  margin: 0 auto;
+  margin: 50px auto 0;
+  height: 100%;
+  padding: 0 2em 25px;
 }
 
-.nav-container {
-  display: flex;
+nav.nav-container {
+  top: 0;
+  position: fixed;
+  height: 50px;
+  width: 100%;
   background-color: #E7717D;
   padding: 10px;
+  z-index: 100;
+  display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.nav-container .nav-profile-btn {
+nav.nav-container .nav-profile-btn {
   flex: 1;
 }
 
-.nav-container .nav-greeting {
+nav.nav-container .nav-greeting {
   flex: 10;
   text-align: center;
 }
 
-.nav-container .nav-logout-btn {
+nav.nav-container .nav-logout-btn {
   flex: 1;
 }
 
-.input_grid {
-  display: grid;
-  /*grid-template-rows: auto;*/
-  grid-template-columns: auto 4fr 2fr auto;
-  grid-template-areas: ". input btn .";
+/*.input_grid {*/
+/*display: grid;*/
+/*grid-template-rows: auto;*/
+/*  grid-template-columns: auto 4fr 2fr auto;
+  grid-template-areas:
+    ". input btn .";
 }
-
+*/
 .lists-grid {
   display: grid;
   grid-template-rows: 15px 30px repeat(3, 150px);
@@ -47,8 +55,8 @@ main {
 }
 
 .lists-grid > *:not(.new-to-do) {
-  border: 2px black solid;
-  border-radius: 5px;
+  border: 2px #E7717d solid;
+  /*border-radius: 5px;*/
   background-color: white;
   position: relative;
   /* needed for drop down menu position */
