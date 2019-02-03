@@ -48,7 +48,7 @@ nav.nav-container .nav-logout-btn {
   display: grid;
   grid-template-rows: 15px 30px repeat(3, 150px);
   grid-template-columns: auto repeat(2, 200px) auto;
-  grid-template-areas: ". . . ." "new new new new" ". eat watch ." ". read buy ." ". uncat finished ." ". . . .";
+  grid-template-areas: ". . . ." ". new new ." ". eat watch ." ". read buy ." ". uncat finished ." ". . . .";
   grid-row-gap: 20px;
   grid-column-gap: 20px;
   /* .new-to-do imported from partial */
@@ -146,9 +146,14 @@ form.new-to-do {
   /* needed for grid */
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 form.new-to-do > * {
   margin: 0 10px;
   border-radius: 5px;
+}
+
+form.new-to-do input.input {
+  width: 60%;
 }
