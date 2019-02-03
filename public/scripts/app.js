@@ -1,7 +1,6 @@
-// import { get } from "http";
-
 $(() => {
   const itemForm = $(".new-to-do");
+  const profileBtn = $(".nav")
 
   function renderLists(rows) {
     for(row of rows) {
@@ -86,6 +85,7 @@ $(() => {
     $('.drop-down').on('click', hideDropDown);
     $('*').not('.revealed').not('.options').on('click', resetDropDownEvents);
   }
+
 
 });
 

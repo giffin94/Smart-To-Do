@@ -19,7 +19,7 @@ const path = require('path'); // this ensures the path will join, even if too ma
 // Seperated Routes for each Resource
 const usersRoutes = require("../routes/users");
 const apiRoutes = require("../routes/apis");
-
+const profRoutes = require("../routes/profile");
 app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
@@ -37,6 +37,7 @@ app.use(express.static("public"));
 
 app.use("/your-lists", usersRoutes(knex));
 app.use("/apis", apiRoutes());
+app.use("/profile", profRoutes(knex));
 
 app.get("/", (req, res) => {
   res.render("index");
