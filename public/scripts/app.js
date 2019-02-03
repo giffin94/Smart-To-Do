@@ -84,7 +84,7 @@ $(() => {
 
     $('.options').on('click', revealDropDown);
     $('.drop-down').on('click', hideDropDown);
-    $('*').not('.revealed').not('.options').on('click', resetDropDownEvents); // mash classes in one string, try
+    $('*').not('.revealed').not('.options').on('click', resetDropDownEvents);
   }
 
 });
