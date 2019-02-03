@@ -44,15 +44,20 @@ $(() => {
 
   function createEvents () {
 
-    // reveal drop down menu
-    $('.options').on('click', function() {
+    const revealDropDown = function() {
       $(this).find('.drop-down').show(75);
-    });
+      $(this).off('click');
+    }
 
-    /*
-    manually toggling between hide() and show() is probably a
-    good strateg for me here. but how...?
-    */
+    const hideDropDown = function() {
+      $(this).hide(75, function () {
+        $(this).parent().on('click', revealDropDown);
+      });
+    }
+
+    $('.options').on('click', revealDropDown);
+    $('.drop-down').on('click', hideDropDown);
+
   }
 
 
