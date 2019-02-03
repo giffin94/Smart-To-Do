@@ -23,6 +23,7 @@
     border: 2px black solid;
     border-radius: 5px;
     background-color: white;
+    position: relative; /* needed for drop down menu position */
   }
 /* .new-to-do imported from partial */
   .eat {

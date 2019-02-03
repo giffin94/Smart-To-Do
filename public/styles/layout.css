@@ -50,6 +50,8 @@ main {
   border: 2px black solid;
   border-radius: 5px;
   background-color: white;
+  position: relative;
+  /* needed for drop down menu position */
 }
 
 .lists-grid .eat {
@@ -102,10 +104,12 @@ main {
 
 .drop-down {
   /*display: none;*/
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 5px;
   background-color: white;
   position: absolute;
+  top: 10px;
+  left: 120px;
 }
 
 .drop-down :hover {
