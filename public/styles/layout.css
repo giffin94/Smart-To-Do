@@ -84,6 +84,7 @@ main {
 .list-items {
   height: 120px;
   overflow: scroll;
+  /* change to auto */
 }
 
 .list-items .list-item {
