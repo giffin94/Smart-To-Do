@@ -14,17 +14,24 @@ function searchYelp(searchString) {
     location: VAN
     })
     .then(response => {
-      console.log(response.jsonBody.businesses.length);
+      // console.log(response.jsonBody.businesses.length);
+      let matches = 0;
       response.jsonBody.businesses.forEach( (element) => {
-
         let currentName = element.name.toLowerCase();
         if (currentName.includes(`${searchString.toLowerCase()}`)) {
-         console.log(element.name + " matches!");
+          matches++;
+          // console.log(element.name + " matches!");
         } else {
-          console.log(element.name + " doesn't match");
+          // console.log(element.name + " doesn't match");
         }
-
       });
+      let result = false;
+      if (matches >=1 && matches <=2) {
+        result = true;
+      } else {
+        result = false;
+      }
+      return result;
     })
     .catch(e => {
     console.log(e);
@@ -35,7 +42,7 @@ const wiki = require('node-wikipedia');
 
 function searchWikip (searchString) {
   wiki.page.data(searchString, { content: true }, (res) => {
-
+      let category = 0;
       const wikiInfobox = res.text['*'] // for movies, books
         .replace('<table', 'STRINGSPLITTER')
         .replace('</tbody></table>', 'STRINGSPLITTER')
@@ -49,23 +56,39 @@ function searchWikip (searchString) {
       const wikiWholeBody = res.text['*'];
 
       if (bookChecker(wikiInfobox)) {
-        return console.log('It\'s a book!');
+        category = 1;
+        return;
+        // return(1);
+        // return console.log('It\'s a book!');
       }
       if (movieChecker(wikiInfobox)) {
-        return console.log('It\'s a movie!');
+        category = 2;
+        return;
+        // return(2);
+        // return console.log('It\'s a movie!');
       }
       if (buyChecker(wikiFirstPara) && !personChecker(wikiInfobox)) {
-        return console.log('It\'s a thing to buy.');
+        category = 3;
+        return;
+        // return(3);
+        // return console.log('It\'s a thing to buy.');
       }
       if (buyChecker(wikiWholeBody) && !personChecker(wikiInfobox)) {
-        return console.log('It\'s a thing to buy.');
+        category = 3;
+        return;        
+        // return(3);
+        // return console.log('It\'s a thing to buy.');
       }
       if (personChecker(wikiInfobox)) {
-        return console.log('It\'s a person.');
-      }
-      return console.log('to be categorized');
-  });
+        return(null);
+        // return console.log('It\'s a person.');
+      } 
 
+      console.log(category);
+      return category;
+      // return console.log('to be categorized');
+  });
+  
 }
 
 // HELPERS
@@ -92,11 +115,18 @@ module.exports = () => {
 
   apiRoutes.get('/:search', (request, response) => {
     let searchTerm = request.params.search;
+    let category = 0;
     searchTerm = searchTerm.replace("to-do=", "");
     // console.log(searchTerm);
-    searchWikip(searchTerm);
-    // searchYelp(searchTerm);
-    response.send(200);
+   searchWikip(searchTerm).then((result) => {
+
+   });
+    searchYelp(searchTerm);
+    if (searchYelp(searchTerm)) {
+      category = 4
+    };
+    console.log(category);
+    // response.json(category.toJSON);
   });
 
   return apiRoutes;

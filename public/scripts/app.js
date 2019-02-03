@@ -37,6 +37,8 @@ $(() => {
     $.ajax({
       method: 'GET',
       url: `/apis/${query}`
+    }).then((response) => {
+      console.log(response);
     })
   })
 
