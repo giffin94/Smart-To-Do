@@ -58,24 +58,29 @@ $(() => {
   function createEvents () {
 
     const revealDropDown = function(e) {
-      $(this).find('.drop-down').show(75).toggleClass('revealed');
-      $(this).off('click');
+      $(this) // 'this' is .options
+        .find('.drop-down')
+        .show(75)
+        .toggleClass('revealed'); // revealed
+      $(this)
+        .off('click');
       e.stopPropagation();
     }
 
     const hideDropDown = function(e) {
-      $(this)
-        .hide(75, function () {
+      $(this).hide(75, function () { // 'this' is .drop-down
           $(this).parent().on('click', revealDropDown);
         })
-        .toggleClass('revealed');
+        .toggleClass('revealed'); // null
       e.stopPropagation();
     }
 
     const resetDropDownEvents = function (e) {
-      $('.revealed').toggleClass('revealed').hide(75, function () {
-        $('.options').on('click', revealDropDown);
-      });
+      $('.revealed')
+        .hide(75, function () {
+          $('.options').on('click', revealDropDown);
+        })
+        .toggleClass('revealed'); // null
     }
 
     $('.options').on('click', revealDropDown);
