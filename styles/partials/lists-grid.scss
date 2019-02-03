@@ -44,35 +44,5 @@
     grid-area: finished;
   }
 }
-
-.list-title {
-  text-align: center;
-  border-bottom: 2px solid black;
-}
-.list-items {
-  height: 120px;
-  overflow: scroll;
-  .list-item {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid black;
-    padding: 0 10px;
-    .check {
-    }
-    .list-text {
-      overflow: hidden;
-      max-width: 60%;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .options {
-    }
-  }
-}
-.drop-down {
-  display: none;
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: white;
-}
-@import 'input-field'
+@import 'list-items';
+@import 'input-field';
