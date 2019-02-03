@@ -9,17 +9,23 @@ $(() => {
       if (!thisClass) {
         thisClass = 'uncat';
       }
+
+      const check = $('<span>').addClass('check').text('√');
+      const priorityElm = $('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do);
+      const regularElm = $('<span>').addClass(`${thisClass} list-text`).text(row.to_do);
+      const options = $('<span>').addClass('options').text('&');
+
       if (row.priority) {
         $('<div>').addClass('list-item')
-          .append($('<span>').addClass('check').text('√'))
-          .append($('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do))
-          .append($('<span>').addClass('options').text('&'))
+          .append(check)
+          .append(priorityElm)
+          .append(options)
           .prependTo(`div#${thisClass}`);
       } else {
         $('<div>').addClass('list-item')
-          .append($('<span>').addClass('check').text('√'))
-          .append($('<span>').addClass(`${thisClass} list-text`).text(row.to_do))
-          .append($('<span>').addClass('options').text('&'))
+          .append(check)
+          .append(regularElm)
+          .append(options)
           .appendTo(`div#${thisClass}`);
       }
     }
