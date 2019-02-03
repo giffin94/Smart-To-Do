@@ -58,12 +58,11 @@ $(() => {
   function createEvents () {
 
     const revealDropDown = function(e) {
-      $(this) // 'this' is .options
-        .find('.drop-down')
-        .show(75)
-        .toggleClass('revealed'); // revealed
-      $(this)
-        .off('click');
+      const dropDown = $(this).find('.drop-down'); // 'this' is .options
+      if (!$(dropDown).hasClass('revealed')) {
+        $(dropDown).show(75).toggleClass('revealed');
+      }
+      $(this).off('click');
       e.stopPropagation();
     }
 
