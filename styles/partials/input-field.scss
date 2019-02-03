@@ -7,9 +7,14 @@ form.new-to-do {
     border-radius: 5px;
   }
   input.input {
-
+    width: 60%;
   }
   input.button {
-
+    border: 1px solid $brun;
+  }
+  :hover:not(.input) {
+    cursor: pointer;
+    background: $brun;
+    color: white;
   }
 }
