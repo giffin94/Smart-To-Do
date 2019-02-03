@@ -108,6 +108,11 @@ main {
   position: absolute;
 }
 
+.drop-down :hover {
+  background-color: blue;
+  cursor: pointer;
+}
+
 .drop-down > * {
   padding: 0 5px;
 }
