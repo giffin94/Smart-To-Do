@@ -69,7 +69,7 @@ $(() => {
 
     const hideDropDown = function(e) {
       $(this).hide(75, function () { // 'this' is .drop-down
-          $(this).parent().on('click', revealDropDown);
+          $('.options').on('click', revealDropDown);
         })
         .toggleClass('revealed'); // null
       e.stopPropagation();
