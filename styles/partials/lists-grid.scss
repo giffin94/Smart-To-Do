@@ -23,6 +23,7 @@
     border: 2px black solid;
     border-radius: 5px;
     background-color: white;
+    position: relative; /* needed for drop down menu position */
   }
 /* .new-to-do imported from partial */
   .eat {
@@ -44,29 +45,5 @@
     grid-area: finished;
   }
 }
-
-.list-title {
-  text-align: center;
-  border-bottom: 2px solid black;
-}
-.list-items {
-  height: 120px;
-  overflow: scroll;
-  .list-item {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid black;
-    padding: 0 10px;
-    .check {
-    }
-    .list-text {
-      overflow: hidden;
-      max-width: 60%;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .options {
-    }
-  }
-}
-@import 'input-field'
+@import 'list-items';
+@import 'input-field';
