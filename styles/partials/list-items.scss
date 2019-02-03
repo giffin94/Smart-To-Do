@@ -12,6 +12,7 @@
     justify-content: space-between;
     border-bottom: 1px solid black;
     padding: 0 10px;
+    position: relative;
     .check {
     }
     .list-text {
@@ -29,4 +30,7 @@
   border: 1px solid black;
   border-radius: 5px;
   background-color: white;
+  position: absolute;
+  top: -2px;
+  left: 110px;
 }

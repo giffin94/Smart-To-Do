@@ -83,8 +83,7 @@ main {
 
 .list-items {
   height: 120px;
-  overflow: scroll;
-  /* change to auto */
+  overflow: auto;
 }
 
 .list-items .list-item {
@@ -92,6 +91,7 @@ main {
   justify-content: space-between;
   border-bottom: 1px solid black;
   padding: 0 10px;
+  position: relative;
 }
 
 .list-items .list-item .list-text {
@@ -106,6 +106,9 @@ main {
   border: 1px solid black;
   border-radius: 5px;
   background-color: white;
+  position: absolute;
+  top: -5px;
+  left: 110px;
 }
 
 form.new-to-do {
