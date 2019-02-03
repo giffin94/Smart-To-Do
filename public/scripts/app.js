@@ -44,22 +44,31 @@ $(() => {
 
   function createEvents () {
 
-    const revealDropDown = function() {
-      $(this).find('.drop-down').show(75);
+    const revealDropDown = function(e) {
+      $(this).find('.drop-down').show(75).toggleClass('revealed');
       $(this).off('click');
+      e.stopPropagation();
     }
 
-    const hideDropDown = function() {
-      $(this).hide(75, function () {
-        $(this).parent().on('click', revealDropDown);
+    const hideDropDown = function(e) {
+      $(this)
+        .hide(75, function () {
+          $(this).parent().on('click', revealDropDown);
+        })
+        .toggleClass('revealed');
+      e.stopPropagation();
+    }
+
+    const resetDropDownEvents = function (e) {
+      $('.revealed').toggleClass('revealed').hide(75, function () {
+        $('.options').on('click', revealDropDown);
       });
     }
 
     $('.options').on('click', revealDropDown);
     $('.drop-down').on('click', hideDropDown);
-
+    $('*').not('.revealed').not('.options').on('click', resetDropDownEvents); // mash classes in one string, try
   }
-
 
 });
 
