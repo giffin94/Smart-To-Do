@@ -11,8 +11,8 @@ $(() => {
       }
 
       const check = $('<span>').addClass('check').text('√');
-      const priorityElm = $('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do);
-      const regularElm = $('<span>').addClass(`${thisClass} list-text`).text(row.to_do);
+      const priorityItem = $('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do);
+      const regularItem = $('<span>').addClass(`${thisClass} list-text`).text(row.to_do);
       const options = $('<span>').addClass('options')
         .append($('<span>').addClass('icon').text('&'))
         .append($('<div>').addClass('drop-down')
@@ -25,13 +25,13 @@ $(() => {
       if (row.priority) {
         $('<div>').addClass('list-item')
           .append(check)
-          .append(priorityElm)
+          .append(priorityItem)
           .append(options)
           .prependTo(`div#${thisClass}`);
       } else {
         $('<div>').addClass('list-item')
           .append(check)
-          .append(regularElm)
+          .append(regularItem)
           .append(options)
           .appendTo(`div#${thisClass}`);
       }
