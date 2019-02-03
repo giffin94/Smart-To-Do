@@ -30,6 +30,7 @@ $(() => {
     url: '/your-lists'
   }).done((rows) => {
     renderLists(rows);
+    createEvents();
   });
 
   itemForm.on("submit", function(event) {
@@ -41,9 +42,18 @@ $(() => {
     })
   })
 
-  $('.options').on('click', () => {
-    // $('.drop-down').show();
-  });
+  function createEvents () {
+
+    // reveal drop down menu
+    $('.options').on('click', function() {
+      $(this).find('.drop-down').show(75);
+    });
+
+    /*
+    manually toggling between hide() and show() is probably a
+    good strateg for me here. but how...?
+    */
+  }
 
 
 });

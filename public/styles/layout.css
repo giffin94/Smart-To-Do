@@ -103,7 +103,7 @@ main {
 }
 
 .drop-down {
-  /*display: none;*/
+  display: none;
   border: 2px solid black;
   border-radius: 5px;
   background-color: white;
