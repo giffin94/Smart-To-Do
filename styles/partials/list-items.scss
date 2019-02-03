@@ -32,9 +32,14 @@
   position: absolute;
   top: 10px;
   left: 120px;
-  :hover {
-    background-color: blue;
+  overflow: hidden;
+  :hover:not(.delete-option) {
+    background-color: #C2CAD0;
     cursor: pointer;
+  }
+  :hover:not(.eat-option .watch-option .read-option .buy-option) {
+    cursor: pointer;
+    background-color: red;
   }
   > * {
     padding: 0 5px;

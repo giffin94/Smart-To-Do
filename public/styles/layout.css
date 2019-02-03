@@ -110,11 +110,17 @@ main {
   position: absolute;
   top: 10px;
   left: 120px;
+  overflow: hidden;
+}
+
+.drop-down :hover:not(.delete-option) {
+  background-color: #C2CAD0;
+  cursor: pointer;
 }
 
 .drop-down :hover {
-  background-color: blue;
   cursor: pointer;
+  background-color: red;
 }
 
 .drop-down > * {
