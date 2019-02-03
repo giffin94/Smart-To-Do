@@ -56,35 +56,32 @@ function searchWikip (searchString) {
       const wikiWholeBody = res.text['*'];
 
       if (bookChecker(wikiInfobox)) {
-        category = 1;
-        return;
+        return category = 1;
         // return(1);
         // return console.log('It\'s a book!');
       }
       if (movieChecker(wikiInfobox)) {
-        category = 2;
-        return;
+        return category = 2;
         // return(2);
         // return console.log('It\'s a movie!');
       }
       if (buyChecker(wikiFirstPara) && !personChecker(wikiInfobox)) {
-        category = 3;
-        return;
+        console.log("banana");
+        return category = 3;
         // return(3);
         // return console.log('It\'s a thing to buy.');
       }
       if (buyChecker(wikiWholeBody) && !personChecker(wikiInfobox)) {
-        category = 3;
-        return;        
+        return category = 3;
         // return(3);
         // return console.log('It\'s a thing to buy.');
       }
       if (personChecker(wikiInfobox)) {
-        return(null);
+        return category = null;
         // return console.log('It\'s a person.');
       } 
 
-      console.log(category);
+      // console.log(category);
       return category;
       // return console.log('to be categorized');
   });
@@ -118,14 +115,16 @@ module.exports = () => {
     let category = 0;
     searchTerm = searchTerm.replace("to-do=", "");
     // console.log(searchTerm);
-   searchWikip(searchTerm).then((result) => {
+  //  searchWikip(searchTerm).then((result) => {
 
-   });
-    searchYelp(searchTerm);
-    if (searchYelp(searchTerm)) {
-      category = 4
-    };
+  //  });
+    // searchYelp(searchTerm);
+    // category = new Promise(searchWikip(searchTerm));
     console.log(category);
+    // if (searchYelp(searchTerm)) {
+    //   category = 4
+    // };
+    // console.log(category);
     // response.json(category.toJSON);
   });
 
