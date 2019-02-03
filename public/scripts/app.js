@@ -13,7 +13,14 @@ $(() => {
       const check = $('<span>').addClass('check').text('√');
       const priorityElm = $('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do);
       const regularElm = $('<span>').addClass(`${thisClass} list-text`).text(row.to_do);
-      const options = $('<span>').addClass('options').text('&');
+      const options = $('<span>').addClass('options')
+        .append($('<span>').addClass('icon').text('&'))
+        .append($('<div>').addClass('drop-down')
+          .append($('<div>').addClass('eat-option drop-item').text('EAT'))
+          .append($('<div>').addClass('watch-option drop-item').text('WATCH'))
+          .append($('<div>').addClass('read-option drop-item').text('READ'))
+          .append($('<div>').addClass('buy-option drop-item').text('BUY'))
+          .append($('<div>').addClass('delete-option drop-item').text('DELETE')));
 
       if (row.priority) {
         $('<div>').addClass('list-item')
