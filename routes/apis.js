@@ -57,35 +57,23 @@ function searchWikip (searchString) {
 
       if (bookChecker(wikiInfobox)) {
         return category = 1;
-        // return(1);
-        // return console.log('It\'s a book!');
       }
       if (movieChecker(wikiInfobox)) {
         return category = 2;
-        // return(2);
-        // return console.log('It\'s a movie!');
       }
       if (buyChecker(wikiFirstPara) && !personChecker(wikiInfobox)) {
-        console.log("banana");
         return category = 3;
-        // return(3);
-        // return console.log('It\'s a thing to buy.');
       }
       if (buyChecker(wikiWholeBody) && !personChecker(wikiInfobox)) {
         return category = 3;
-        // return(3);
-        // return console.log('It\'s a thing to buy.');
       }
       if (personChecker(wikiInfobox)) {
         return category = null;
-        // return console.log('It\'s a person.');
-      } 
+      }
 
-      // console.log(category);
       return category;
-      // return console.log('to be categorized');
   });
-  
+
 }
 
 // HELPERS
@@ -120,7 +108,7 @@ module.exports = () => {
   //  });
     // searchYelp(searchTerm);
     // category = new Promise(searchWikip(searchTerm));
-    console.log(category);
+    // console.log(category);
     // if (searchYelp(searchTerm)) {
     //   category = 4
     // };
