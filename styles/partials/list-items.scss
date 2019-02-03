@@ -33,13 +33,15 @@
   top: 10px;
   left: 120px;
   overflow: hidden;
-  :hover:not(.delete-option) {
-    background-color: #C2CAD0;
-    cursor: pointer;
-  }
   :hover:not(.eat-option .watch-option .read-option .buy-option) {
     cursor: pointer;
-    background-color: red;
+    background-color: #7E685A;
+    color: white;
+  }
+  :hover:not(.delete-option) {
+    cursor: pointer;
+    background-color: #C2B9B0;
+    color: black;
   }
   > * {
     padding: 0 5px;

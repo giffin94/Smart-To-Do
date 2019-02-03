@@ -4,13 +4,13 @@ body {
 
 main {
   width: 90vmin;
-  background-color: #C2B9B0;
+  background-color: #C2CAD0;
   margin: 0 auto;
 }
 
 .nav-container {
   display: flex;
-  background-color: tomato;
+  background-color: #E7717D;
   padding: 10px;
   align-items: center;
   justify-content: space-between;
@@ -113,14 +113,16 @@ main {
   overflow: hidden;
 }
 
-.drop-down :hover:not(.delete-option) {
-  background-color: #C2CAD0;
-  cursor: pointer;
-}
-
 .drop-down :hover {
   cursor: pointer;
-  background-color: red;
+  background-color: #7E685A;
+  color: white;
+}
+
+.drop-down :hover:not(.delete-option) {
+  cursor: pointer;
+  background-color: #C2B9B0;
+  color: black;
 }
 
 .drop-down > * {
