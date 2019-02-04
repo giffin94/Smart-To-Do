@@ -14,7 +14,8 @@ main {
   width: 90vmin;
   background-color: $grey;
   margin: $nav-height auto 0;
-  height: 100vh;
+  height: 85vh;
+  overflow: scroll;
   padding: 0 2em 25px;
 }
 

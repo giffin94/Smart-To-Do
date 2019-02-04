@@ -6,7 +6,8 @@ main {
   width: 90vmin;
   background-color: #C2CAD0;
   margin: 50px auto 0;
-  height: 100vh;
+  height: 85vh;
+  overflow: scroll;
   padding: 0 2em 25px;
 }
 
@@ -197,6 +198,5 @@ form.new-to-do :hover:not(.input) {
   flex-direction: column;
   padding: 0 20%;
   height: 120px;
-  /*align-items: center;*/
   justify-content: center;
 }
