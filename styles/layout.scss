@@ -9,8 +9,8 @@ $box-height: 120px;
 
 body {
   background-color: $pink;
-  background-image: url("https://i.imgur.com/KpwcXen.png");  
-  background-position: relative; 
+  background-image: url("https://i.imgur.com/KpwcXen.png");
+  background-position: relative;
   background-position-y: -20em;
   background-size: fill;
 }
@@ -18,7 +18,7 @@ main {
   width: 90vmin;
   background-color: rgba(162,166,173,0.3);
   margin: $nav-height auto 0;
-  height: 100vh;
+  height: 85vh;
   overflow: auto;
   padding: 0 2em 25px;
 }
@@ -28,3 +28,4 @@ main {
 @import 'partials/nav-bar';
 @import 'partials/main';
 @import 'partials/welcome';
+@import 'partials/footer';

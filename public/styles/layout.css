@@ -10,7 +10,7 @@ main {
   width: 90vmin;
   background-color: rgba(162, 166, 173, 0.3);
   margin: 50px auto 0;
-  height: 100vh;
+  height: 85vh;
   overflow: auto;
   padding: 0 2em 25px;
 }
@@ -232,4 +232,13 @@ form.login-form > * {
 
 #to-reg:hover, #to-login:hover {
   cursor: pointer;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  background-color: rgba(231, 113, 125, 0.8);
+  height: 50px;
 }
