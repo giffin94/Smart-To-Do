@@ -8,30 +8,24 @@ const yelp = require('yelp-fusion');
 const VAN = 'vancouver, bc';
 const yelpClient = yelp.client(yelpKey);
 
-function searchYelp(searchString) {
+function searchYelp(searchString, cb) {
   yelpClient.search({
     term:`${searchString}`,
     location: VAN
     })
     .then(response => {
-      // console.log(response.jsonBody.businesses.length);
       let matches = 0;
       response.jsonBody.businesses.forEach( (element) => {
         let currentName = element.name.toLowerCase();
         if (currentName.includes(`${searchString.toLowerCase()}`)) {
           matches++;
-          // console.log(element.name + " matches!");
-        } else {
-          // console.log(element.name + " doesn't match");
         }
       });
       let result = false;
       if (matches >=1 && matches <=2) {
         result = true;
-      } else {
-        result = false;
       }
-      return result;
+      cb(result);
     })
     .catch(e => {
     console.log(e);
@@ -40,40 +34,39 @@ function searchYelp(searchString) {
 
 const wiki = require('node-wikipedia');
 
-function searchWikip (searchString) {
-  wiki.page.data(searchString, { content: true }, (res) => {
-      let category = 0;
-      const wikiInfobox = res.text['*'] // for movies, books
-        .replace('<table', 'STRINGSPLITTER')
-        .replace('</tbody></table>', 'STRINGSPLITTER')
-        .split('STRINGSPLITTER')[1].toLowerCase();
+function searchWikip (searchString, cb) {
+    wiki.page.data(searchString, { content: true }, (res) => {
+    const wikiInfobox = res.text['*'] // for movies, books
+      .replace('<table', 'STRINGSPLITTER')
+      .replace('</tbody></table>', 'STRINGSPLITTER')
+      .split('STRINGSPLITTER')[1].toLowerCase();
 
-      const wikiFirstPara = res.text['*'] // for food (and other)
-        .replace('<p>', 'STRINGSPLITTER \n\n\n')
-        .replace('</p><p>', 'STRINGSPLITTER \n\n\n')
-        .split('STRINGSPLITTER')[1].toLowerCase();
+    const wikiFirstPara = res.text['*'] // for food (and other)
+      .replace('<p>', 'STRINGSPLITTER \n\n\n')
+      .replace('</p><p>', 'STRINGSPLITTER \n\n\n')
+      .split('STRINGSPLITTER')[1].toLowerCase();
 
-      const wikiWholeBody = res.text['*'];
+    const wikiWholeBody = res.text['*'];
 
-      if (bookChecker(wikiInfobox)) {
-        return category = 1;
-      }
-      if (movieChecker(wikiInfobox)) {
-        return category = 2;
-      }
-      if (buyChecker(wikiFirstPara) && !personChecker(wikiInfobox)) {
-        return category = 3;
-      }
-      if (buyChecker(wikiWholeBody) && !personChecker(wikiInfobox)) {
-        return category = 3;
-      }
-      if (personChecker(wikiInfobox)) {
-        return category = null;
-      }
+    let category; // = 0;
+    if (bookChecker(wikiInfobox)) {
+      category = 1;
+    }
+    if (movieChecker(wikiInfobox)) {
+      category = 2;
+    }
+    if (buyChecker(wikiFirstPara) && !personChecker(wikiInfobox)) {
+      category = 3;
+    }
+    if (buyChecker(wikiWholeBody) && !personChecker(wikiInfobox)) {
+      category = 3;
+    }
+    // if (personChecker(wikiInfobox)) {
+    //   category = null;
+    // }
 
-      return category;
+    cb(category);
   });
-
 }
 
 // HELPERS
@@ -98,21 +91,22 @@ function personChecker (wikiString) {
 
 module.exports = () => {
 
-  apiRoutes.get('/:search', (request, response) => {
-    let searchTerm = request.params.search;
-    let category = 0;
-    searchTerm = searchTerm.replace("to-do=", "");
-    // console.log(searchTerm);
-  //  searchWikip(searchTerm).then((result) => {
+    apiRoutes.get('/:search', (request, response, next) => {
+      let searchTerm = request.params.search;
+      searchTerm = searchTerm.replace("to-do=", "");
+      console.log(searchTerm);
 
-  //  });
-    // searchYelp(searchTerm);
-    // category = new Promise(searchWikip(searchTerm));
-    // console.log(category);
-    // if (searchYelp(searchTerm)) {
-    //   category = 4
-    // };
-    // console.log(category);
+      searchYelp(searchTerm, (data) => {
+        if (data === true) {
+          return console.log('this is a restaurant');
+          // return response.json(data);
+        }
+        searchWikip(searchTerm, (data) => {
+          return console.log(`this is a category ${data}`);
+          // return response.json(data.toJSON());
+        });
+      })
+
     // response.json(category.toJSON);
   });
 

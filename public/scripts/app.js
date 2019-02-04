@@ -52,7 +52,7 @@ $(() => {
       method: 'GET',
       url: `/apis/${query}`
     }).then((response) => {
-      console.log(response);
+      console.log('CAW', response);
     })
   })
 
