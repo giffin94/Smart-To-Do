@@ -18,19 +18,22 @@
     text-align: center;
     border-bottom: 2px black solid;
   }
-  form.profile-form {
-    display: none;
-    height: $box-height;
-    > * {
-      display: block;
+  .profile-flexbox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    form.profile-form {
+      display: none;
+      height: $box-height;
+      > * {
+        display: block;
+      }
     }
-  }
-  .profile-data {
-    display: flex;
-    flex-direction: column;
-    padding: 0 20%;
-    height: $box-height;
-    justify-content: center;
+    .profile-data {
+      padding: 10px 20%;
+      height: $box-height;
+    }
   }
 }
 
