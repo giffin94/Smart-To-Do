@@ -110,6 +110,10 @@ nav.nav-container .nav-logout-btn {
   white-space: nowrap;
 }
 
+.list-items .priority {
+  background-color: #AFD275;
+}
+
 .drop-down {
   display: none;
   border: 2px solid black;
