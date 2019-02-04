@@ -64,11 +64,27 @@ module.exports = (knex) => {
   });
 
   userRoutes.patch('/prioritize-item', (request, response) => {
+    let itemID = request.body.id;
+    let newPrio = true;
+    if (request.body.priority) {
+      newPrio = false;
+    }
     knex('to_dos')
-    .where({id: 8}) //id should be id of the item being prioritized
-    .update({ priority: "true" }) //priority should be set to true or false (determined before ajax req)
+    .where({id: `${itemID}`}) //id should be id of the item being prioritized
+    .update({ priority: `${newPrio}` }) //priority should be set to true or false (determined before ajax req)
     .then( () => {
       console.log("Update complete!");
+      knex('to_dos')
+      .leftJoin('categories', 'categories.id', '=', 'cat_id')
+      .where('user_id', '1')
+      .select('to_dos.id', 'to_do', 'priority', 'category')
+      .then((rows) => {
+        if (rows.length) {
+          response.json(rows);
+        } else {
+          console.log('No results found!');
+        }
+      })
     })
     .catch( (error) => {
       console.error(error);

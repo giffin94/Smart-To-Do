@@ -10,8 +10,8 @@ $(() => {
       }
 
       const check = $('<span>').addClass('check').attr( 'data-id', `${thisID}`).text('√');
-      const priorityItem = $('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do);
-      const regularItem = $('<span>').addClass(`${thisClass} list-text`).text(row.to_do);
+      // const priorityItem = $('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do);
+      const thisItem = $('<span>').addClass(`${thisClass} list-text`).text(row.to_do);
       const options = $('<span>').addClass('options')
         .append($('<span>').addClass('icon').text('&'))
         .append($('<div>').addClass('drop-down')
@@ -22,15 +22,15 @@ $(() => {
           .append($('<div>').addClass('delete-option drop-item').attr({ 'data-id': `${thisID}`, 'data-cat': '0' }).text('DELETE')));
 
       if (row.priority) {
-        $('<div>').addClass(`list-item`)
+        $('<div>').addClass(`list-item priority`).attr( 'data-id', `${thisID}`)
           .append(check)
-          .append(priorityItem)
+          .append(thisItem)
           .append(options)
           .prependTo(`div#${thisClass}`);
       } else {
-        $('<div>').addClass(`list-item`)
+        $('<div>').addClass(`list-item`).attr( 'data-id', `${thisID}`)
           .append(check)
-          .append(regularItem)
+          .append(thisItem)
           .append(options)
           .appendTo(`div#${thisClass}`);
       }
@@ -135,6 +135,22 @@ $(() => {
           renderLists(rows);
           createEvents();
         })
+    });
+    $('.list-item').dblclick( function() {
+      let itemID = $(this).data('id');
+      let prio = $(this).hasClass("priority");
+      $.ajax({
+        method: 'POST',
+        url: '/your-lists/prioritize-item?_method=PATCH',
+        data: {
+          id: itemID,
+          priority: prio
+        }
+      }).then((rows) => {
+        clearLists();
+        renderLists(rows);
+        createEvents();
+      })
     });
   }
 });
