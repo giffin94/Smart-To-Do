@@ -158,4 +158,14 @@ $(() => {
       })
     });
   }
+
+  $('.nav-logout-btn').click(() => {
+    $.ajax({
+      method: 'GET',
+      url: '/logout'
+    }).then(() => {
+      $('body').empty().append('<a href="/">You are now logged out, login here or register."</a>');
+    })
+  })
+
 });

@@ -41,5 +41,39 @@ module.exports = (knex) => {
       }
     })
   });
+  
+  verificationRoutes.put('/login', (req, res) => {
+
+    let veriFlag = false;
+
+    knex('users')
+    .select()
+    .then((rows) => {
+      rows.forEach( (row) => {
+        if(row.email === req.body.email) {
+          if (row.password === req.body.password) {
+            req.session.user_id = row.id;
+            return veriFlag = true;
+          }
+        }
+      })
+    })
+    .then(() => {
+      console.log(veriFlag);
+      if (veriFlag) {
+        
+          knex('users')
+          .where({email: `${req.body.email}`})
+          .select('id')
+          .then((rows) => {
+            req.session.user_id = rows[0].id;
+            console.log(rows);
+            res.sendStatus(200);
+          });
+      } else {
+        res.sendStatus(403);
+      }    
+    })
+  });
   return verificationRoutes;
 }
