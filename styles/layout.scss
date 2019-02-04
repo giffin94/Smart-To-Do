@@ -5,15 +5,18 @@ $brun: #7E685A;
 $lime: #AFD275;
 
 $nav-height: 50px;
+$box-height: 120px;
 
 body {
-  background-color: $pink;
+  /*background-color: $pink;*/
+  background: url(a-very-smart-cat.png) $pink;
 }
 main {
   width: 90vmin;
   background-color: $grey;
   margin: $nav-height auto 0;
-  height: 100%;
+  height: 85vh;
+  overflow: scroll;
   padding: 0 2em 25px;
 }
 
