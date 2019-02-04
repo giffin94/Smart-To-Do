@@ -20,7 +20,7 @@ app.use(methodOverride('_method'));
 
 // Seperated Routes for each Resource
 const usersRoutes = require("../routes/users");
-const apiRoutes = require("../routes/apis");
+// const apiRoutes = require("../routes/apis");
 const profRoutes = require("../routes/profile");
 app.use(morgan('dev'));
 
@@ -38,7 +38,7 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 app.use("/your-lists", usersRoutes(knex));
-app.use("/apis", apiRoutes());
+// app.use("/apis", apiRoutes());
 app.use("/profile", profRoutes(knex));
 
 app.get("/", (req, res) => {

@@ -51,13 +51,18 @@ $(() => {
 
   itemForm.on("submit", function(event) {
     event.preventDefault();
-    let query = $(this).serialize();
+    let item = $(this).serialize();
     $.ajax({
-      method: 'GET', // change to PUT
-      url: `/apis/${query}`, // change to users/new-item
-      // data: req.body // include query as data item
-    }).then((response) => {
-      console.log('CAW', response);
+      method: 'POST',
+      url: '/your-lists/new-item?_method=PUT',
+      data: {
+        item
+        // user id (which will come from sessions cookies later) LEAVE BLANK FOR NOW
+      }
+    }).then((rows) => {
+      clearLists();
+      renderLists(rows);
+      createEvents();
     })
   })
 
