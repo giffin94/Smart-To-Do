@@ -9,7 +9,7 @@ $(() => {
         thisClass = 'uncat';
       }
 
-      const check = $('<span>').addClass('check').text('√');
+      const check = $('<span>').addClass('check').attr( 'data-id', `${thisID}`).text('√');
       const priorityItem = $('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do);
       const regularItem = $('<span>').addClass(`${thisClass} list-text`).text(row.to_do);
       const options = $('<span>').addClass('options')
@@ -93,31 +93,27 @@ $(() => {
     $(".drop-item").click( function (e) {
       let itemID = $(this).data('id');
       let newCat = $(this).data('cat');
-      console.log(itemID);
-      console.log(newCat);
       if (newCat) {
         $.ajax({
-          method: 'PATCH',
-          url: '/your-lists/recat-item?method=PATCH',
+          method: 'POST',
+          url: '/your-lists/recat-item?_method=PATCH',
           data: {
             id: itemID,
             catID: newCat
           }
         }).then((rows) => {
-          console.log(rows);
           clearLists();
           renderLists(rows);
           createEvents();
         })
       } else {
         $.ajax({
-          method: 'DELETE',
-          url: '/your-lists/delete-item?method=DELETE',
+          method: 'POST',
+          url: '/your-lists/delete-item?_method=DELETE',
           data: {
             id: itemID,
           }
         }).then((rows) => {
-          console.log(rows);
           clearLists();
           renderLists(rows);
           createEvents();
@@ -125,9 +121,20 @@ $(() => {
       }
     });
     $('.drop-down').on('click', hideDropDown);
-
+    $('.check').click( function(e) {
+      let itemID = $(this).data('id');
+        $.ajax({
+          method: 'POST',
+          url: '/your-lists/recat-item?_method=PATCH',
+          data: {
+            id: itemID,
+            catID: 5
+          }
+        }).then( (rows) => {
+          clearLists();
+          renderLists(rows);
+          createEvents();
+        })
+    });
   }
-}
-
-
-
+});
