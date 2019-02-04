@@ -171,6 +171,6 @@ form.new-to-do :hover:not(.input) {
   color: white;
 }
 
-form.user-info > * {
+form.profile-form > * {
   display: block;
 }

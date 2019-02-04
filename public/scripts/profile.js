@@ -10,7 +10,7 @@ $(() => {
       .appendTo('.profile-holder');
   }
 
-  $('<form>').addClass('user-info')
+  $('<form>').addClass('profile-form')
     .append($('<input type="text" name="name" placeholder="your name">').addClass('input'))
     .append($('<input type="text" name="email" placeholder="your email">').addClass('input'))
     .append($('<input type="submit" value="Update Profile">').addClass('button'))
