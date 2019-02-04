@@ -193,5 +193,10 @@ form.new-to-do :hover:not(.input) {
 }
 
 .profile-holder .profile-data {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20%;
   height: 120px;
+  /*align-items: center;*/
+  justify-content: center;
 }

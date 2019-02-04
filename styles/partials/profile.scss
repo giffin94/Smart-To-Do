@@ -13,6 +13,7 @@
   grid-area: profile;
   border: 2px solid $pink;
   background-color: white;
+
   .profile-title {
     text-align: center;
     border-bottom: 2px black solid;
@@ -25,7 +26,12 @@
     }
   }
   .profile-data {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20%;
     height: $box-height;
+    /*align-items: center;*/
+    justify-content: center;
   }
 }
 
