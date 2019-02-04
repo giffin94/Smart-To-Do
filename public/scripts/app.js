@@ -9,9 +9,9 @@ $(() => {
         thisClass = 'uncat';
       }
 
-      const check = $('<span>').addClass('check').text('√');
-      const priorityItem = $('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do);
-      const regularItem = $('<span>').addClass(`${thisClass} list-text`).text(row.to_do);
+      const check = $('<span>').addClass('check').attr( 'data-id', `${thisID}`).text('√');
+      // const priorityItem = $('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do);
+      const thisItem = $('<span>').addClass(`${thisClass} list-text`).text(row.to_do);
       const options = $('<span>').addClass('options')
         .append($('<span>').addClass('icon').text('&'))
         .append($('<div>').addClass('drop-down')
@@ -22,15 +22,15 @@ $(() => {
           .append($('<div>').addClass('delete-option drop-item').attr({ 'data-id': `${thisID}`, 'data-cat': '0' }).text('DELETE')));
 
       if (row.priority) {
-        $('<div>').addClass(`list-item`)
+        $('<div>').addClass(`list-item priority`).attr( 'data-id', `${thisID}`)
           .append(check)
-          .append(priorityItem)
+          .append(thisItem)
           .append(options)
           .prependTo(`div#${thisClass}`);
       } else {
-        $('<div>').addClass(`list-item`)
+        $('<div>').addClass(`list-item`).attr( 'data-id', `${thisID}`)
           .append(check)
-          .append(regularItem)
+          .append(thisItem)
           .append(options)
           .appendTo(`div#${thisClass}`);
       }
@@ -98,31 +98,27 @@ $(() => {
     $(".drop-item").click( function (e) {
       let itemID = $(this).data('id');
       let newCat = $(this).data('cat');
-      console.log(itemID);
-      console.log(newCat);
       if (newCat) {
         $.ajax({
-          method: 'PATCH',
-          url: '/your-lists/recat-item?method=PATCH',
+          method: 'POST',
+          url: '/your-lists/recat-item?_method=PATCH',
           data: {
             id: itemID,
             catID: newCat
           }
         }).then((rows) => {
-          console.log(rows);
           clearLists();
           renderLists(rows);
           createEvents();
         })
       } else {
         $.ajax({
-          method: 'DELETE',
-          url: '/your-lists/delete-item?method=DELETE',
+          method: 'POST',
+          url: '/your-lists/delete-item?_method=DELETE',
           data: {
             id: itemID,
           }
         }).then((rows) => {
-          console.log(rows);
           clearLists();
           renderLists(rows);
           createEvents();
@@ -130,9 +126,36 @@ $(() => {
       }
     });
     $('.drop-down').on('click', hideDropDown);
-
+    $('.check').click( function(e) {
+      let itemID = $(this).data('id');
+        $.ajax({
+          method: 'POST',
+          url: '/your-lists/recat-item?_method=PATCH',
+          data: {
+            id: itemID,
+            catID: 5
+          }
+        }).then( (rows) => {
+          clearLists();
+          renderLists(rows);
+          createEvents();
+        })
+    });
+    $('.list-item').dblclick( function() {
+      let itemID = $(this).data('id');
+      let prio = $(this).hasClass("priority");
+      $.ajax({
+        method: 'POST',
+        url: '/your-lists/prioritize-item?_method=PATCH',
+        data: {
+          id: itemID,
+          priority: prio
+        }
+      }).then((rows) => {
+        clearLists();
+        renderLists(rows);
+        createEvents();
+      })
+    });
   }
 });
-
-
-
