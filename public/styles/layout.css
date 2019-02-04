@@ -170,3 +170,7 @@ form.new-to-do :hover:not(.input) {
   background: #7E685A;
   color: white;
 }
+
+form.user-info > * {
+  display: block;
+}
