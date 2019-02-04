@@ -3,12 +3,9 @@ $(() => {
   function renderUserInfo(data) {
     const userName = data[0].name
     const userEmail = data[0].email
-    $('<div>').addClass('list-item')
-      .append($('<span>').addClass('username').text(`Username: ${userName}`))
-      .append($('<button>').addClass('edit').text('edit'))
-      .appendTo('.profile-holder');
-    $('<div>').addClass('list-item')
-      .append($('<span>').addClass('email').text(`Email: ${userEmail}`))
+    $('<div>').addClass('profile-data')
+      .append($('<div>').addClass('username').text(`Username: ${userName}`))
+      .append($('<div>').addClass('email').text(`Email: ${userEmail}`))
       .append($('<button>').addClass('edit').text('edit'))
       .appendTo('.profile-holder');
   }
