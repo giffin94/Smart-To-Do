@@ -11,6 +11,12 @@ $(() => {
       .append($('<button>').addClass('edit').text('edit'))
       .appendTo('.profile-flexbox');
   }
+  
+  $('<form>').addClass('profile-form hidden')
+  .append($(`<input type="text" name="name" value='usernam'>`).addClass('input'))
+  .append($(`<input type="text" name="email" value='email'>`).addClass('input'))
+  .append($('<input type="submit" value="Update Profile">').addClass('button'))
+  .appendTo('.profile-flexbox');  
 
   $.ajax({
     method: 'GET',
@@ -20,13 +26,7 @@ $(() => {
     makeEvents(rows);
   })
 
-  console.log(sessionName);
-
-  $('<form>').addClass('profile-form hidden')
-  .append($(`<input type="text" name="name" value='${sessionName}'>`).addClass('input'))
-  .append($(`<input type="text" name="email" value='${sessionEmail}'>`).addClass('input'))
-  .append($('<input type="submit" value="Update Profile">').addClass('button'))
-  .appendTo('.profile-flexbox');  
+  // console.log(sessionName);
 
   function makeEvents() {
 
