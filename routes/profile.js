@@ -10,12 +10,12 @@ module.exports = (knex) => {
   });
 
   profRoutes.get("/info", (req, res) => {
+    let userID = req.session.user_id;
     knex('users')
-    .where('id', '1')
+    .where('id', `${userID}`)
     .select('name', 'email')
     .then((rows) => {
       if (rows.length) {
-        console.log(rows);
         res.json(rows);
       } else {
         console.log('No results found!');

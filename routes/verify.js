@@ -22,7 +22,7 @@ module.exports = (knex) => {
       if (veriFlag) {
         knex('users')
         .insert([{
-          name: req.body.name,
+          name: req.body.userName,
           email: req.body.email,
           password: req.body.password 
         }])
