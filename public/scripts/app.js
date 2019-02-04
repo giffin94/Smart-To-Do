@@ -2,6 +2,7 @@ $(() => {
   const itemForm = $(".new-to-do");
 
   function renderLists(rows) {
+    console.log(rows);
     for(row of rows) {
       let thisClass = row.category;
       let thisID = row.id;
@@ -58,9 +59,9 @@ $(() => {
       url: '/your-lists/new-item?_method=PUT',
       data: {
         item
-        // user id (which will come from sessions cookies later) LEAVE BLANK FOR NOW
       }
-    }).then((rows) => {
+    })
+    .then((rows) => {
       clearLists();
       renderLists(rows);
       createEvents();

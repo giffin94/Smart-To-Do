@@ -9,7 +9,7 @@ const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
 const methodOverride = require('method-override');
-
+const cookieSession = require('cookie-session');
 const knexConfig  = require("../knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
@@ -20,9 +20,15 @@ app.use(methodOverride('_method'));
 
 // Seperated Routes for each Resource
 const usersRoutes = require("../routes/users");
-// const apiRoutes = require("../routes/apis");
 const profRoutes = require("../routes/profile");
+const verificationRoutes = require("../routes/verify")
 app.use(morgan('dev'));
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['xkcd'],
+  maxAge: 24 * 60 * 60 * 1000 //24 hours
+}));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
@@ -38,11 +44,15 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 app.use("/your-lists", usersRoutes(knex));
-// app.use("/apis", apiRoutes());
 app.use("/profile", profRoutes(knex));
+app.use("/verify", verificationRoutes(knex));
 
 app.get("/", (req, res) => {
-  res.render("index");
+  if (req.session.user_id) {
+    res.render("index");
+  } else {
+    res.render("welcome");
+  }
 });
 
 app.listen(PORT, () => {
