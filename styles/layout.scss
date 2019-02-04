@@ -1,11 +1,20 @@
+$pink: #E7717D;
+$grey: #C2CAD0;
+$dust: #C2B9B0;
+$brun: #7E685A;
+$lime: #AFD275;
+
+$nav-height: 50px;
 
 body {
-  background-color: white;
+  background-color: $pink;
 }
-main{
+main {
   width: 90vmin;
-  background-color: #C2CAD0;
-  margin: 0 auto;
+  background-color: $grey;
+  margin: $nav-height auto 0;
+  height: 100%;
+  padding: 0 2em 25px;
 }
 
 

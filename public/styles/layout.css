@@ -1,54 +1,62 @@
 body {
-  background-color: white;
+  background-color: #E7717D;
 }
 
 main {
   width: 90vmin;
   background-color: #C2CAD0;
-  margin: 0 auto;
+  margin: 50px auto 0;
+  height: 100%;
+  padding: 0 2em 25px;
 }
 
-.nav-container {
-  display: flex;
+nav.nav-container {
+  top: 0;
+  position: fixed;
+  height: 50px;
+  width: 100%;
   background-color: #E7717D;
   padding: 10px;
+  z-index: 100;
+  display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.nav-container .nav-profile-btn {
+nav.nav-container .nav-profile-btn {
   flex: 1;
 }
 
-.nav-container .nav-greeting {
+nav.nav-container .nav-greeting {
   flex: 10;
   text-align: center;
 }
 
-.nav-container .nav-logout-btn {
+nav.nav-container .nav-logout-btn {
   flex: 1;
 }
 
-.input_grid {
-  display: grid;
-  /*grid-template-rows: auto;*/
-  grid-template-columns: auto 4fr 2fr auto;
-  grid-template-areas: ". input btn .";
+/*.input_grid {*/
+/*display: grid;*/
+/*grid-template-rows: auto;*/
+/*  grid-template-columns: auto 4fr 2fr auto;
+  grid-template-areas:
+    ". input btn .";
 }
-
+*/
 .lists-grid {
   display: grid;
   grid-template-rows: 15px 30px repeat(3, 150px);
   grid-template-columns: auto repeat(2, 200px) auto;
-  grid-template-areas: ". . . ." "new new new new" ". eat watch ." ". read buy ." ". uncat finished ." ". . . .";
+  grid-template-areas: ". . . ." ". new new ." ". eat watch ." ". read buy ." ". uncat finished ." ". . . .";
   grid-row-gap: 20px;
   grid-column-gap: 20px;
   /* .new-to-do imported from partial */
 }
 
 .lists-grid > *:not(.new-to-do) {
-  border: 2px black solid;
-  border-radius: 5px;
+  border: 2px #E7717D solid;
+  /*border-radius: 5px;*/
   background-color: white;
   position: relative;
   /* needed for drop down menu position */
@@ -143,4 +151,18 @@ form.new-to-do {
 form.new-to-do > * {
   margin: 0 10px;
   border-radius: 5px;
+}
+
+form.new-to-do input.input {
+  width: 60%;
+}
+
+form.new-to-do input.button {
+  border: 1px solid #7E685A;
+}
+
+form.new-to-do :hover:not(.input) {
+  cursor: pointer;
+  background: #7E685A;
+  color: white;
 }

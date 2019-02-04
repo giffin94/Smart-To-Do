@@ -9,7 +9,7 @@ module.exports = (knex) => {
     knex('to_dos')
       .leftJoin('categories', 'categories.id', '=', 'cat_id')
       .where('user_id', '1')
-      .select('to_do', 'priority', 'category')
+      .select('to_dos.id', 'to_do', 'priority', 'category')
       .then((rows) => {
         if (rows.length) {
           response.json(rows);
@@ -37,15 +37,16 @@ module.exports = (knex) => {
   });
 
   userRoutes.patch('/recat-item', (request, response) => { 
-    knex('to_dos')
-    .where({id: 8}) //id should be id of the item being recategorized
-    .update({ cat_id: `${cat}` }) //cat should be id of new category chosen (or done)
-    .then( () => {
-      console.log("Insert complete!");
-    })
-    .catch( (error) => {
-      console.error(error);
-    });
+    console.log(request.body);
+    // knex('to_dos')
+    // .where({id: 8}) //id should be id of the item being recategorized
+    // .update({ cat_id: `${cat}` }) //cat should be id of new category chosen (or done)
+    // .then( () => {
+    //   console.log("Insert complete!");
+    // })
+    // .catch( (error) => {
+    //   console.error(error);
+    // });
   });
 
   userRoutes.patch('/prioritize-item', (request, response) => { 
