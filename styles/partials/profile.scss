@@ -1,7 +1,7 @@
 .profile-grid {
   display: grid;
   grid-row-gap: 20px;
-  grid-template-rows: 15px 150px;
+  grid-template-rows: 1fr 4fr 1fr;
   grid-template-columns: auto 350px auto;
   grid-template-areas:
   ". . ."
