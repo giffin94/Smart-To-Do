@@ -49,9 +49,9 @@ $(() => {
     event.preventDefault();
     let query = $(this).serialize();
     $.ajax({
-      method: 'GET', // PUT
-      url: `/apis/${query}`, // users/new-item
-      // data: req.body
+      method: 'GET', // change to PUT
+      url: `/apis/${query}`, // change to users/new-item
+      // data: req.body // include query as data item
     }).then((response) => {
       console.log('CAW', response);
     })
@@ -107,28 +107,7 @@ $(() => {
     });
     $('.drop-down').on('click', hideDropDown);
 
-
   }
-
-
-  $.ajax({
-    method: 'GET',
-    url: '/your-lists'
-  }).done((rows) => {
-    renderLists(rows);
-    createEvents();
-  });
-
-  itemForm.on("submit", function(event) {
-    event.preventDefault();
-    let query = $(this).serialize();
-    $.ajax({
-      method: 'GET',
-      url: `/apis/${query}`
-    }).then((response) => {
-      console.log(response);
-    })
-  })
 
 });
 
