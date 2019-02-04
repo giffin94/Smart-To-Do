@@ -1,8 +1,8 @@
 $(() => {
 
-  const registrationForm = $('.new-user'); 
+  const registrationForm = $('.new-user');
   const loginForm = $('.login-form');
-  
+
   registrationForm.on('submit', (e) => {
     e.preventDefault();
     const userName = registrationForm.children("[name='name']").val();
@@ -44,8 +44,20 @@ $(() => {
       $('body').empty().append('<a href="/">SMARTCAT AWAITS...</a>');
     })
     .catch((err) => {
-      // console.log(err.responseJSON[0].error); we can send custom errors this way
       alert("User info incorrect...");
     });
   });
+
+  $('#to-reg').on('click', function(e) {
+    $('.login-form').toggle().toggleClass('hidden');
+    $('.new-user').toggle().toggleClass('hidden');
+  });
+
+  $('#to-login').on('click', function() {
+    $('.new-user').toggle().toggleClass('hidden');
+    $('.login-form').toggle().toggleClass('hidden');
+  });
+
+
 })
+

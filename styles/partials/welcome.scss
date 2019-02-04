@@ -1,0 +1,18 @@
+form.new-user {
+  display: none;
+  margin: 20px;
+  > * {
+    margin: 5px;
+  }
+}
+
+form.login-form {
+  margin: 20px;
+  > * {
+    margin: 5px;
+  }
+}
+
+#to-reg:hover, #to-login:hover {
+  cursor: pointer;
+}

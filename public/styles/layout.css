@@ -207,3 +207,24 @@ form.new-to-do :hover:not(.input) {
   padding: 10px 20%;
   height: 120px;
 }
+
+form.new-user {
+  display: none;
+  margin: 20px;
+}
+
+form.new-user > * {
+  margin: 5px;
+}
+
+form.login-form {
+  margin: 20px;
+}
+
+form.login-form > * {
+  margin: 5px;
+}
+
+#to-reg:hover, #to-login:hover {
+  cursor: pointer;
+}
