@@ -35,20 +35,20 @@ const queryAPIs = {
       yelpClient.search({
         term:`${searchString}`,
         location: VAN
-        })
-        .then(response => {
-          let matches = 0;
-          response.jsonBody.businesses.forEach( (element) => {
-            let currentName = element.name.toLowerCase();
-            if (currentName.includes(`${searchString.toLowerCase()}`)) {
-              matches++;
-            }
-          });
-          let result = false;
-          if (matches >=1 && matches <=2) {
-            result = true;
+      })
+      .then(response => {
+        let matches = 0;
+        response.jsonBody.businesses.forEach( (element) => {
+          let currentName = element.name.toLowerCase();
+          if (currentName.includes(`${searchString.toLowerCase()}`)) {
+            matches++;
           }
-          resolve(result);
+        });
+        let result = false;
+        if (matches >=1 && matches <=2) {
+          result = true;
+        }
+        resolve(result);
         })
         .catch(e => {
           reject(null);

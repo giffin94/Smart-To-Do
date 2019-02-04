@@ -20,10 +20,10 @@ module.exports = (knex) => {
       })
   });
 
-  //insert new to-do list (FOR USER_ID 1 CURRENTLY)
   userRoutes.put('/new-item', (request, response) => {
     const rawInput = request.body;
-    const searchTerm = rawInput.item.replace('to-do=', '');
+    let searchTerm = rawInput.item.replace('to-do=', '');
+    searchTerm = searchTerm.replace(/%20/g, " ");
 
     queryAPIs.searchYelp(searchTerm)
       .then((data) => {
@@ -33,9 +33,9 @@ module.exports = (knex) => {
           queryAPIs.searchWikip(searchTerm)
             .then((data) => {
               sendNewToKnex(data);//.then((data) => { // 1 - read, 3 - buy, 4 - movies
-          }).catch((data) => console.log(data)); // null - uncategorized
+          }).catch((data) => sendNewToKnex(null)); // null - uncategorized
         }
-      }).catch((data) => console.log(data)); // null - uncategorized
+      }).catch(() => console.log(data)); // null - uncategorized
 
     function sendNewToKnex(category) {
       return new Promise((resolve, reject) => {
@@ -72,8 +72,8 @@ module.exports = (knex) => {
     let currentItem = request.body.id;
     let newCat = request.body.catID;
     knex('to_dos')
-    .where({id: `${currentItem}`}) //id should be id of the item being recategorized
-    .update({ cat_id: `${newCat}` }) //cat should be id of new category chosen (or done)
+    .where({id: `${currentItem}`})
+    .update({ cat_id: `${newCat}` })
     .then( () => {
       console.log("Insert complete!");
       knex('to_dos')
@@ -95,25 +95,26 @@ module.exports = (knex) => {
 
   userRoutes.patch('/prioritize-item', (request, response) => {
     let itemID = request.body.id;
-    let newPrio = true;
-    if (request.body.priority) {
-      newPrio = false;
-    }
     knex('to_dos')
-    .where({id: `${itemID}`}) //id should be id of the item being prioritized
-    .update({ priority: `${newPrio}` }) //priority should be set to true or false (determined before ajax req)
-    .then( () => {
-      console.log("Update complete!");
+    .where({id: `${itemID}`})
+    .select('priority')
+    .then( (rows) => {
       knex('to_dos')
-      .leftJoin('categories', 'categories.id', '=', 'cat_id')
-      .where('user_id', '1')
-      .select('to_dos.id', 'to_do', 'priority', 'category')
-      .then((rows) => {
-        if (rows.length) {
-          response.json(rows);
-        } else {
-          console.log('No results found!');
-        }
+      .where({id: `${itemID}`})
+      .update({ priority:  `${!(rows[0].priority)}`})
+      .then( () => {
+        console.log("Update complete!");
+        knex('to_dos')
+        .leftJoin('categories', 'categories.id', '=', 'cat_id')
+        .where('user_id', '1')
+        .select('to_dos.id', 'to_do', 'priority', 'category')
+        .then((rows) => {
+          if (rows.length) {
+            response.json(rows);
+          } else {
+            console.log('No results found!');
+          }
+        })
       })
     })
     .catch( (error) => {
@@ -125,7 +126,7 @@ module.exports = (knex) => {
   userRoutes.delete('/delete-item', (request, response) => {
     let thisItem = request.body.id;
     knex('to_dos')
-    .where({id: `${thisItem}`}) //id should be id of the item being deleted
+    .where({id: `${thisItem}`})
     .del()
     .then( () => {
       console.log("Item deleted!");
