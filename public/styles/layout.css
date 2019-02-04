@@ -186,6 +186,7 @@ form.new-to-do :hover:not(.input) {
 
 .profile-holder .profile-flexbox {
   display: flex;
+  /* pretty sure flexbox isn't doing anything */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -194,6 +195,7 @@ form.new-to-do :hover:not(.input) {
 .profile-holder .profile-flexbox form.profile-form {
   display: none;
   height: 120px;
+  padding: 10px 20%;
 }
 
 .profile-holder .profile-flexbox form.profile-form > * {

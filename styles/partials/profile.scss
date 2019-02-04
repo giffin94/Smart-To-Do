@@ -19,13 +19,14 @@
     border-bottom: 2px black solid;
   }
   .profile-flexbox {
-      display: flex;
+      display: flex; /* pretty sure flexbox isn't doing anything */
       flex-direction: column;
       justify-content: center;
       align-items: center;
     form.profile-form {
       display: none;
       height: $box-height;
+      padding: 10px 20%;
       > * {
         display: block;
       }
