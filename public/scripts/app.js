@@ -49,8 +49,9 @@ $(() => {
     event.preventDefault();
     let query = $(this).serialize();
     $.ajax({
-      method: 'GET',
-      url: `/apis/${query}`
+      method: 'GET', // PUT
+      url: `/apis/${query}`, // users/new-item
+      // data: req.body
     }).then((response) => {
       console.log('CAW', response);
     })

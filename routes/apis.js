@@ -106,9 +106,7 @@ module.exports = () => {
           // return response.json(data.toJSON());
         });
       })
-
-    // response.json(category.toJSON);
-  });
+    });
 
   return apiRoutes;
 }

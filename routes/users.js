@@ -21,6 +21,7 @@ module.exports = (knex) => {
 
   //insert new to-do list (FOR USER_ID 1 CURRENTLY)
   userRoutes.put('/new-item', (request, response) => {
+    // query apis to return category
     knex('to_dos')
     .insert([{
       to_do: `${item}`, //change to req.body.item or whatever it is
@@ -33,10 +34,10 @@ module.exports = (knex) => {
     })
     .catch( (error) => {
       console.error(error);
-    });  
+    });
   });
 
-  userRoutes.patch('/recat-item', (request, response) => { 
+  userRoutes.patch('/recat-item', (request, response) => {
     console.log(request.body);
     // knex('to_dos')
     // .where({id: 8}) //id should be id of the item being recategorized
@@ -49,7 +50,7 @@ module.exports = (knex) => {
     // });
   });
 
-  userRoutes.patch('/prioritize-item', (request, response) => { 
+  userRoutes.patch('/prioritize-item', (request, response) => {
     knex('to_dos')
     .where({id: 8}) //id should be id of the item being prioritized
     .update({ priority: "true" }) //priority should be set to true or false (determined before ajax req)
@@ -61,10 +62,10 @@ module.exports = (knex) => {
     });
   });
 
-  userRoutes.delete('/delete-item', (request, response) => { 
+  userRoutes.delete('/delete-item', (request, response) => {
     knex('to_dos')
     .where({id: 8}) //id should be id of the item being deleted
-    .del() 
+    .del()
     .then( () => {
       console.log("Item deleted!");
     })
