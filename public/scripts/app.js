@@ -53,14 +53,16 @@ $(() => {
     event.preventDefault();
     let item = $(this).serialize();
     $.ajax({
-      method: 'POST', // change to PUT
+      method: 'POST',
       url: '/your-lists/new-item?_method=PUT',
       data: {
         item
         // user id (which will come from sessions cookies later) LEAVE BLANK FOR NOW
       }
-    }).then((response) => {
-      console.log('CAW', response);
+    }).then((rows) => {
+      clearLists();
+      renderLists(rows);
+      createEvents();
     })
   })
 

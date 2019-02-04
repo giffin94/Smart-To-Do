@@ -24,31 +24,53 @@ module.exports = (knex) => {
   userRoutes.put('/new-item', (request, response) => {
     const rawInput = request.body;
     const searchTerm = rawInput.item.replace('to-do=', '');
-    queryAPIs.searchYelp(searchTerm).then((data) => {
-      if (data) {
-        return console.log('yes you did it!');
-      }
-      queryAPIs.searchWikip(searchTerm).then((data) => {
-        return console.log('woohooo1111');
-      }).catch((data) => console.log(data));
-    }).catch((data) => console.log(data));
-    // console.log('cawcaw', searchTerm);
 
-    // query apis to return category
+    queryAPIs.searchYelp(searchTerm)
+      .then((data) => {
+        if (data) {
+          sendNewToKnex(2); //.then((data) => { // 2 - eat
+            // console.log(data);
+            // response.redirect('/');
+          // });
+        } else {
+          queryAPIs.searchWikip(searchTerm)
+            .then((data) => {
+              sendNewToKnex(data);//.then((data) => { // 1 - read, 3 - buy, 4 - movies
+              // console.log(data);
+              // response.redirect('/');
+            // });
+          }).catch((data) => console.log(data)); // null - uncategorized
+        }
+      }).catch((data) => console.log(data)); // null - uncategorized
 
-    // knex('to_dos')
-    // .insert([{
-    //   to_do: `${item}`, //change to req.body.item or whatever it is
-    //   user_id: "1", //should be from req.body (not hardcoded)
-    //   cat_id: `${cat}`, //same as item
-    //   priority: "false"
-    // }])
-    // .then( () => {
-    //   console.log("insert complete!");
-    // })
-    // .catch( (error) => {
-    //   console.error(error);
-    // });
+    function sendNewToKnex(category) {
+      return new Promise((resolve, reject) => {
+        knex('to_dos')
+          .insert([{
+            to_do: searchTerm,
+            user_id: "1", // to be got from the sessions.cookie
+            cat_id: category,
+            priority: "false"
+          }])
+          .then(() => {
+            knex('to_dos')
+            .leftJoin('categories', 'categories.id', '=', 'cat_id')
+            .where('user_id', '1')
+            .select('to_dos.id', 'to_do', 'priority', 'category')
+            .then((rows) => {
+              if (rows.length) {
+                response.json(rows);
+              } else {
+                console.log('No results found!');
+              }
+            })
+          })
+          .catch( (error) => {
+            console.error(error);
+          });
+      });
+    }
+
   });
 
   userRoutes.patch('/recat-item', (request, response) => {
