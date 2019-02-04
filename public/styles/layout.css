@@ -1,14 +1,17 @@
 body {
-  /*background-color: $pink;*/
-  background: url(a-very-smart-cat.png) #E7717D;
+  background-color: #E7717D;
+  background-image: url("https://i.imgur.com/KpwcXen.png");
+  background-position: relative;
+  background-position-y: -20em;
+  background-size: fill;
 }
 
 main {
   width: 90vmin;
-  background-color: #C2CAD0;
+  background-color: rgba(162, 166, 173, 0.3);
   margin: 50px auto 0;
-  height: 85vh;
-  overflow: scroll;
+  height: 100vh;
+  overflow: auto;
   padding: 0 2em 25px;
 }
 
@@ -17,7 +20,7 @@ nav.nav-container {
   position: fixed;
   height: 50px;
   width: 100%;
-  background-color: #E7717D;
+  background-color: rgba(231, 113, 125, 0.8);
   padding: 10px;
   z-index: 100;
   display: flex;
@@ -32,6 +35,8 @@ nav.nav-container .nav-profile-btn {
 nav.nav-container .nav-greeting {
   flex: 10;
   text-align: center;
+  font-size: xx-large;
+  color: #533b70;
 }
 
 nav.nav-container .nav-logout-btn {

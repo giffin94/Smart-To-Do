@@ -8,15 +8,18 @@ $nav-height: 50px;
 $box-height: 120px;
 
 body {
-  /*background-color: $pink;*/
-  background: url(a-very-smart-cat.png) $pink;
+  background-color: $pink;
+  background-image: url("https://i.imgur.com/KpwcXen.png");  
+  background-position: relative; 
+  background-position-y: -20em;
+  background-size: fill;
 }
 main {
   width: 90vmin;
-  background-color: $grey;
+  background-color: rgba(162,166,173,0.3);
   margin: $nav-height auto 0;
-  height: 85vh;
-  overflow: scroll;
+  height: 100vh;
+  overflow: auto;
   padding: 0 2em 25px;
 }
 
