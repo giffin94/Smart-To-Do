@@ -23,7 +23,8 @@ module.exports = (knex) => {
   //insert new to-do list (FOR USER_ID 1 CURRENTLY)
   userRoutes.put('/new-item', (request, response) => {
     const rawInput = request.body;
-    const searchTerm = rawInput.item.replace('to-do=', '');
+    let searchTerm = rawInput.item.replace('to-do=', '');
+    searchTerm = searchTerm.replace(/%20/g, " ");
 
     queryAPIs.searchYelp(searchTerm)
       .then((data) => {
@@ -33,9 +34,9 @@ module.exports = (knex) => {
           queryAPIs.searchWikip(searchTerm)
             .then((data) => {
               sendNewToKnex(data);//.then((data) => { // 1 - read, 3 - buy, 4 - movies
-          }).catch((data) => console.log(data)); // null - uncategorized
+          }).catch((data) => sendNewToKnex(null)); // null - uncategorized
         }
-      }).catch((data) => console.log(data)); // null - uncategorized
+      }).catch(() => console.log(data)); // null - uncategorized
 
     function sendNewToKnex(category) {
       return new Promise((resolve, reject) => {

@@ -52,6 +52,7 @@ $(() => {
   itemForm.on("submit", function(event) {
     event.preventDefault();
     let item = $(this).serialize();
+    itemForm[0].reset();
     $.ajax({
       method: 'POST',
       url: '/your-lists/new-item?_method=PUT',
