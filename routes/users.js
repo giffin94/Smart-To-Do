@@ -29,16 +29,10 @@ module.exports = (knex) => {
       .then((data) => {
         if (data) {
           sendNewToKnex(2); //.then((data) => { // 2 - eat
-            // console.log(data);
-            // response.redirect('/');
-          // });
         } else {
           queryAPIs.searchWikip(searchTerm)
             .then((data) => {
               sendNewToKnex(data);//.then((data) => { // 1 - read, 3 - buy, 4 - movies
-              // console.log(data);
-              // response.redirect('/');
-            // });
           }).catch((data) => console.log(data)); // null - uncategorized
         }
       }).catch((data) => console.log(data)); // null - uncategorized
