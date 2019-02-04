@@ -51,11 +51,14 @@ $(() => {
 
   itemForm.on("submit", function(event) {
     event.preventDefault();
-    let query = $(this).serialize();
+    let item = $(this).serialize();
     $.ajax({
-      method: 'GET', // change to PUT
-      url: `/apis/${query}`, // change to users/new-item
-      // data: req.body // include query as data item
+      method: 'POST', // change to PUT
+      url: '/your-lists/new-item?_method=PUT',
+      data: {
+        item
+        // user id (which will come from sessions cookies later) LEAVE BLANK FOR NOW
+      } //req.body
     }).then((response) => {
       console.log('CAW', response);
     })
@@ -127,7 +130,7 @@ $(() => {
     $('.drop-down').on('click', hideDropDown);
 
   }
-}
+});
 
 
 

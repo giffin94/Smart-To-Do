@@ -21,20 +21,21 @@ module.exports = (knex) => {
 
   //insert new to-do list (FOR USER_ID 1 CURRENTLY)
   userRoutes.put('/new-item', (request, response) => {
+    console.log(request.body);
     // query apis to return category
-    knex('to_dos')
-    .insert([{
-      to_do: `${item}`, //change to req.body.item or whatever it is
-      user_id: "1", //should be from req.body (not hardcoded)
-      cat_id: `${cat}`, //same as item
-      priority: "false"
-    }])
-    .then( () => {
-      console.log("insert complete!");
-    })
-    .catch( (error) => {
-      console.error(error);
-    });
+    // knex('to_dos')
+    // .insert([{
+    //   to_do: `${item}`, //change to req.body.item or whatever it is
+    //   user_id: "1", //should be from req.body (not hardcoded)
+    //   cat_id: `${cat}`, //same as item
+    //   priority: "false"
+    // }])
+    // .then( () => {
+    //   console.log("insert complete!");
+    // })
+    // .catch( (error) => {
+    //   console.error(error);
+    // });
   });
 
   userRoutes.patch('/recat-item', (request, response) => {
