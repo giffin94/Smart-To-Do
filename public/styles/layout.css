@@ -1,5 +1,6 @@
 body {
-  background-color: #E7717D;
+  /*background-color: $pink;*/
+  background: url(a-very-smart-cat.png) #E7717D;
 }
 
 main {

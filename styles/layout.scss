@@ -8,7 +8,8 @@ $nav-height: 50px;
 $box-height: 120px;
 
 body {
-  background-color: $pink;
+  /*background-color: $pink;*/
+  background: url(a-very-smart-cat.png) $pink;
 }
 main {
   width: 90vmin;
