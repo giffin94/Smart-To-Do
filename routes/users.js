@@ -42,8 +42,8 @@ module.exports = (knex) => {
     let currentItem = request.body.id;
     let newCat = request.body.catID;
     knex('to_dos')
-    .where({id: `${currentItem}`}) //id should be id of the item being recategorized
-    .update({ cat_id: `${newCat}` }) //cat should be id of new category chosen (or done)
+    .where({id: `${currentItem}`})
+    .update({ cat_id: `${newCat}` })
     .then( () => {
       console.log("Insert complete!");
       knex('to_dos')
@@ -65,25 +65,26 @@ module.exports = (knex) => {
 
   userRoutes.patch('/prioritize-item', (request, response) => {
     let itemID = request.body.id;
-    let newPrio = true;
-    if (request.body.priority) {
-      newPrio = false;
-    }
     knex('to_dos')
-    .where({id: `${itemID}`}) //id should be id of the item being prioritized
-    .update({ priority: `${newPrio}` }) //priority should be set to true or false (determined before ajax req)
-    .then( () => {
-      console.log("Update complete!");
+    .where({id: `${itemID}`})
+    .select('priority')
+    .then( (rows) => {
       knex('to_dos')
-      .leftJoin('categories', 'categories.id', '=', 'cat_id')
-      .where('user_id', '1')
-      .select('to_dos.id', 'to_do', 'priority', 'category')
-      .then((rows) => {
-        if (rows.length) {
-          response.json(rows);
-        } else {
-          console.log('No results found!');
-        }
+      .where({id: `${itemID}`})
+      .update({ priority:  `${!(rows[0].priority)}`})
+      .then( () => {
+        console.log("Update complete!");
+        knex('to_dos')
+        .leftJoin('categories', 'categories.id', '=', 'cat_id')
+        .where('user_id', '1')
+        .select('to_dos.id', 'to_do', 'priority', 'category')
+        .then((rows) => {
+          if (rows.length) {
+            response.json(rows);
+          } else {
+            console.log('No results found!');
+          }
+        })
       })
     })
     .catch( (error) => {
@@ -95,7 +96,7 @@ module.exports = (knex) => {
   userRoutes.delete('/delete-item', (request, response) => {
     let thisItem = request.body.id;
     knex('to_dos')
-    .where({id: `${thisItem}`}) //id should be id of the item being deleted
+    .where({id: `${thisItem}`})
     .del()
     .then( () => {
       console.log("Item deleted!");

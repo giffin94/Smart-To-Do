@@ -138,13 +138,11 @@ $(() => {
     });
     $('.list-item').dblclick( function() {
       let itemID = $(this).data('id');
-      let prio = $(this).hasClass("priority");
       $.ajax({
         method: 'POST',
         url: '/your-lists/prioritize-item?_method=PATCH',
         data: {
-          id: itemID,
-          priority: prio
+          id: itemID
         }
       }).then((rows) => {
         clearLists();
