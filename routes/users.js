@@ -2,8 +2,7 @@
 
 const express = require('express');
 const userRoutes  = express.Router();
-const queryAPIs = require('./util/apis');
-console.log(queryAPIs);
+const queryAPIs = require('./util/apis-helpers');
 
 module.exports = (knex) => {
 
@@ -23,7 +22,18 @@ module.exports = (knex) => {
 
   //insert new to-do list (FOR USER_ID 1 CURRENTLY)
   userRoutes.put('/new-item', (request, response) => {
-    console.log(request.body);
+    const rawInput = request.body;
+    const searchTerm = rawInput.item.replace('to-do=', '');
+    queryAPIs.searchYelp(searchTerm).then((data) => {
+      if (data) {
+        return console.log('yes you did it!');
+      }
+      queryAPIs.searchWikip(searchTerm).then((data) => {
+        return console.log('woohooo1111');
+      }).catch((data) => console.log(data));
+    }).catch((data) => console.log(data));
+    // console.log('cawcaw', searchTerm);
+
     // query apis to return category
 
     // knex('to_dos')
