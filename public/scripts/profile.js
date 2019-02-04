@@ -27,7 +27,6 @@ $(() => {
     makeEvents();
   })
 
-  // console.log(sessionName);
 
   function makeEvents() {
 
@@ -37,12 +36,25 @@ $(() => {
     });
 
     $('.profile-form').on('submit', function(e) {
-      // e.preventDefault();
+      e.preventDefault();
       e.stopPropagation();
       let userName = $(this).children("[name='name']").val();
-      let email = $(this).children("[email='email']").val();
+      let email = $(this).children("[name='email']").val();
         console.log(userName);
         console.log(email);
+      $.ajax({
+        method: 'POST',
+        url: '/profile/info?_method=PATCH',
+        data: {
+          userName,
+          email
+        }
+      })
+      .then((rows) => {
+        $('.profile-flexbox').empty();
+        renderUserInfo(rows);
+        makeEvents();
+      })
       });
 
   }

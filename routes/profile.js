@@ -23,6 +23,30 @@ module.exports = (knex) => {
     })
   });
 
+  profRoutes.patch('/info', (req, res) => {
+    const userName = req.body.userName;
+    const email = req.body.email;
+    const userID = req.session.user_id;
+    knex('users')
+      .where('id', `${userID}`)
+      .update({
+        email,
+        name: userName
+      })
+      .then(() => {
+        knex('users')
+        .where('id', `${userID}`)
+        .select('name', 'email')
+        .then((rows) => {
+          if (rows.length) {
+            res.json(rows);
+          } else {
+            console.log('No results found!');
+          }
+        })
+      })
+  })
+
 
   return profRoutes;
 }
