@@ -20,7 +20,6 @@ module.exports = (knex) => {
       })
   });
 
-  //insert new to-do list (FOR USER_ID 1 CURRENTLY)
   userRoutes.put('/new-item', (request, response) => {
     const rawInput = request.body;
     let searchTerm = rawInput.item.replace('to-do=', '');
