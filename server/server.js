@@ -8,6 +8,7 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
+const methodOverride = require('method-override');
 
 const knexConfig  = require("../knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -15,6 +16,7 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 const path = require('path'); // this ensures the path will join, even if too many/too few slashes
+app.use(methodOverride('_method'));
 
 // Seperated Routes for each Resource
 const usersRoutes = require("../routes/users");

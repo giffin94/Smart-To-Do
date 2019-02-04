@@ -37,6 +37,10 @@ $(() => {
     }
   }
 
+  function clearLists() {
+    $('*.list-items').empty();
+  }
+
   $.ajax({
     method: 'GET',
     url: '/your-lists'
@@ -94,21 +98,36 @@ $(() => {
       if (newCat) {
         $.ajax({
           method: 'PATCH',
-          url: '/your-lists/recat',
+          url: '/your-lists/recat-item?method=PATCH',
           data: {
             id: itemID,
             catID: newCat
           }
+        }).then((rows) => {
+          console.log(rows);
+          clearLists();
+          renderLists(rows);
+          createEvents();
         })
-        //recategorize
       } else {
-        //delete
+        $.ajax({
+          method: 'DELETE',
+          url: '/your-lists/delete-item?method=DELETE',
+          data: {
+            id: itemID,
+          }
+        }).then((rows) => {
+          console.log(rows);
+          clearLists();
+          renderLists(rows);
+          createEvents();
+        })
       }
     });
     $('.drop-down').on('click', hideDropDown);
 
   }
+}
 
-});
 
 

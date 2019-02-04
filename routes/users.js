@@ -39,15 +39,28 @@ module.exports = (knex) => {
 
   userRoutes.patch('/recat-item', (request, response) => {
     console.log(request.body);
-    // knex('to_dos')
-    // .where({id: 8}) //id should be id of the item being recategorized
-    // .update({ cat_id: `${cat}` }) //cat should be id of new category chosen (or done)
-    // .then( () => {
-    //   console.log("Insert complete!");
-    // })
-    // .catch( (error) => {
-    //   console.error(error);
-    // });
+    let currentItem = request.body.id;
+    let newCat = request.body.catID;
+    knex('to_dos')
+    .where({id: `${currentItem}`}) //id should be id of the item being recategorized
+    .update({ cat_id: `${newCat}` }) //cat should be id of new category chosen (or done)
+    .then( () => {
+      console.log("Insert complete!");
+      knex('to_dos')
+      .leftJoin('categories', 'categories.id', '=', 'cat_id')
+      .where('user_id', '1')
+      .select('to_dos.id', 'to_do', 'priority', 'category')
+      .then((rows) => {
+        if (rows.length) {
+          response.json(rows);
+        } else {
+          console.log('No results found!');
+        }
+      })
+    })
+    .catch( (error) => {
+      console.error(error);
+    });
   });
 
   userRoutes.patch('/prioritize-item', (request, response) => {
@@ -62,12 +75,25 @@ module.exports = (knex) => {
     });
   });
 
+
   userRoutes.delete('/delete-item', (request, response) => {
+    let thisItem = request.body.id;
     knex('to_dos')
-    .where({id: 8}) //id should be id of the item being deleted
+    .where({id: `${thisItem}`}) //id should be id of the item being deleted
     .del()
     .then( () => {
       console.log("Item deleted!");
+      knex('to_dos')
+      .leftJoin('categories', 'categories.id', '=', 'cat_id')
+      .where('user_id', '1')
+      .select('to_dos.id', 'to_do', 'priority', 'category')
+      .then((rows) => {
+        if (rows.length) {
+          response.json(rows);
+        } else {
+          console.log('No results found!');
+        }
+      })
     })
     .catch( (error) => {
       console.error(error);
