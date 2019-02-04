@@ -3,7 +3,6 @@ $(() => {
   function renderUserInfo(data) {
     const userName = data[0].name
     const userEmail = data[0].email
-    // console.log(userName, userEmail);
     $('<div>').addClass('list-item')
       .append($('<span>').addClass('username').text(`Username: ${userName}`))
       .append($('<button>').addClass('edit').text('edit'))
