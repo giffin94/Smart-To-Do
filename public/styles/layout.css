@@ -36,14 +36,6 @@ nav.nav-container .nav-logout-btn {
   flex: 1;
 }
 
-/*.input_grid {*/
-/*display: grid;*/
-/*grid-template-rows: auto;*/
-/*  grid-template-columns: auto 4fr 2fr auto;
-  grid-template-areas:
-    ". input btn .";
-}
-*/
 .lists-grid {
   display: grid;
   grid-template-rows: 15px 30px repeat(3, 150px);
@@ -93,6 +85,7 @@ nav.nav-container .nav-logout-btn {
 
 .list-items {
   height: 120px;
+  /*120px;*/
   overflow: auto;
 }
 
@@ -171,6 +164,34 @@ form.new-to-do :hover:not(.input) {
   color: white;
 }
 
-form.profile-form > * {
+.profile-grid {
+  display: grid;
+  grid-row-gap: 20px;
+  grid-template-rows: 15px 150px;
+  grid-template-columns: auto 350px auto;
+  grid-template-areas: ". . ." ". profile ." ". . .";
+}
+
+.profile-holder {
+  grid-area: profile;
+  border: 2px solid #E7717D;
+  background-color: white;
+}
+
+.profile-holder .profile-title {
+  text-align: center;
+  border-bottom: 2px black solid;
+}
+
+.profile-holder form.profile-form {
+  display: none;
+  height: 120px;
+}
+
+.profile-holder form.profile-form > * {
   display: block;
+}
+
+.profile-holder .profile-data {
+  height: 120px;
 }

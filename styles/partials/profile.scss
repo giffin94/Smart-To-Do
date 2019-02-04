@@ -1,6 +1,31 @@
-form.profile-form {
-  > * {
-    display: block;
+.profile-grid {
+  display: grid;
+  grid-row-gap: 20px;
+  grid-template-rows: 15px 150px;
+  grid-template-columns: auto 350px auto;
+  grid-template-areas:
+  ". . ."
+  ". profile ."
+  ". . .";
+}
+
+.profile-holder {
+  grid-area: profile;
+  border: 2px solid $pink;
+  background-color: white;
+  .profile-title {
+    text-align: center;
+    border-bottom: 2px black solid;
+  }
+  form.profile-form {
+    display: none;
+    height: $box-height;
+    > * {
+      display: block;
+    }
+  }
+  .profile-data {
+    height: $box-height;
   }
 }
 

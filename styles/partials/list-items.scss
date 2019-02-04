@@ -5,7 +5,7 @@
 }
 
 .list-items {
-  height: 120px;
+  height: $box-height; /*120px;*/
   overflow: auto;
   .list-item {
     display: flex;
