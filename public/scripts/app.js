@@ -58,7 +58,7 @@ $(() => {
       data: {
         item
         // user id (which will come from sessions cookies later) LEAVE BLANK FOR NOW
-      } //req.body
+      }
     }).then((response) => {
       console.log('CAW', response);
     })

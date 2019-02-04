@@ -2,6 +2,8 @@
 
 const express = require('express');
 const userRoutes  = express.Router();
+const queryAPIs = require('./util/apis');
+console.log(queryAPIs);
 
 module.exports = (knex) => {
 
@@ -23,6 +25,7 @@ module.exports = (knex) => {
   userRoutes.put('/new-item', (request, response) => {
     console.log(request.body);
     // query apis to return category
+
     // knex('to_dos')
     // .insert([{
     //   to_do: `${item}`, //change to req.body.item or whatever it is
