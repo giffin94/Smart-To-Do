@@ -184,19 +184,23 @@ form.new-to-do :hover:not(.input) {
   border-bottom: 2px black solid;
 }
 
-.profile-holder form.profile-form {
+.profile-holder .profile-flexbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-holder .profile-flexbox form.profile-form {
   display: none;
   height: 120px;
 }
 
-.profile-holder form.profile-form > * {
+.profile-holder .profile-flexbox form.profile-form > * {
   display: block;
 }
 
-.profile-holder .profile-data {
-  display: flex;
-  flex-direction: column;
-  padding: 0 20%;
+.profile-holder .profile-flexbox .profile-data {
+  padding: 10px 20%;
   height: 120px;
-  justify-content: center;
 }
