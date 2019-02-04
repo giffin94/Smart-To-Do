@@ -7,22 +7,20 @@ const queryAPIs = require('./util/apis-helpers');
 module.exports = (knex) => {
 
   userRoutes.get('/', (request, response) => {
+    let userID = request.session.user_id;
     knex('to_dos')
       .leftJoin('categories', 'categories.id', '=', 'cat_id')
-      .where('user_id', '1')
+      .where('user_id', `${userID}`)
       .select('to_dos.id', 'to_do', 'priority', 'category')
       .then((rows) => {
-        if (rows.length) {
           response.json(rows);
-        } else {
-          console.log('No results found!');
-        }
       })
   });
 
   userRoutes.put('/new-item', (request, response) => {
     const rawInput = request.body;
     let searchTerm = rawInput.item.replace('to-do=', '');
+    let userID = request.session.user_id;
     searchTerm = searchTerm.replace(/%20/g, " ");
 
     queryAPIs.searchYelp(searchTerm)
@@ -33,7 +31,7 @@ module.exports = (knex) => {
           queryAPIs.searchWikip(searchTerm)
             .then((data) => {
               sendNewToKnex(data);//.then((data) => { // 1 - read, 3 - buy, 4 - movies
-          }).catch((data) => sendNewToKnex(null)); // null - uncategorized
+          }).catch(() => sendNewToKnex(null)); // null - uncategorized
         }
       }).catch(() => console.log(data)); // null - uncategorized
 
@@ -42,21 +40,17 @@ module.exports = (knex) => {
         knex('to_dos')
           .insert([{
             to_do: searchTerm,
-            user_id: "1", // to be got from the sessions.cookie
+            user_id: userID, // to be got from the sessions.cookie
             cat_id: category,
             priority: "false"
           }])
           .then(() => {
             knex('to_dos')
             .leftJoin('categories', 'categories.id', '=', 'cat_id')
-            .where('user_id', '1')
+            .where('user_id', `${userID}`)
             .select('to_dos.id', 'to_do', 'priority', 'category')
             .then((rows) => {
-              if (rows.length) {
                 response.json(rows);
-              } else {
-                console.log('No results found!');
-              }
             })
           })
           .catch( (error) => {
@@ -68,9 +62,10 @@ module.exports = (knex) => {
   });
 
   userRoutes.patch('/recat-item', (request, response) => {
-    console.log(request.body);
     let currentItem = request.body.id;
     let newCat = request.body.catID;
+    let userID = request.session.user_id;
+
     knex('to_dos')
     .where({id: `${currentItem}`})
     .update({ cat_id: `${newCat}` })
@@ -78,14 +73,10 @@ module.exports = (knex) => {
       console.log("Insert complete!");
       knex('to_dos')
       .leftJoin('categories', 'categories.id', '=', 'cat_id')
-      .where('user_id', '1')
+      .where('user_id', `${userID}`)
       .select('to_dos.id', 'to_do', 'priority', 'category')
       .then((rows) => {
-        if (rows.length) {
           response.json(rows);
-        } else {
-          console.log('No results found!');
-        }
       })
     })
     .catch( (error) => {
@@ -95,6 +86,7 @@ module.exports = (knex) => {
 
   userRoutes.patch('/prioritize-item', (request, response) => {
     let itemID = request.body.id;
+    let userID = request.session.user_id;
     knex('to_dos')
     .where({id: `${itemID}`})
     .select('priority')
@@ -106,14 +98,10 @@ module.exports = (knex) => {
         console.log("Update complete!");
         knex('to_dos')
         .leftJoin('categories', 'categories.id', '=', 'cat_id')
-        .where('user_id', '1')
+        .where('user_id', `${userID}`)
         .select('to_dos.id', 'to_do', 'priority', 'category')
         .then((rows) => {
-          if (rows.length) {
             response.json(rows);
-          } else {
-            console.log('No results found!');
-          }
         })
       })
     })
@@ -125,6 +113,7 @@ module.exports = (knex) => {
 
   userRoutes.delete('/delete-item', (request, response) => {
     let thisItem = request.body.id;
+    let userID = request.session.user_id;
     knex('to_dos')
     .where({id: `${thisItem}`})
     .del()
@@ -132,14 +121,10 @@ module.exports = (knex) => {
       console.log("Item deleted!");
       knex('to_dos')
       .leftJoin('categories', 'categories.id', '=', 'cat_id')
-      .where('user_id', '1')
+      .where('user_id', `${userID}`)
       .select('to_dos.id', 'to_do', 'priority', 'category')
       .then((rows) => {
-        if (rows.length) {
           response.json(rows);
-        } else {
-          console.log('No results found!');
-        }
       })
     })
     .catch( (error) => {

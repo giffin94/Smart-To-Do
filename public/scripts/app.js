@@ -10,7 +10,6 @@ $(() => {
       }
 
       const check = $('<span>').addClass('check').attr( 'data-id', `${thisID}`).text('√');
-      // const priorityItem = $('<span>').addClass(`${thisClass} priority list-text`).text(row.to_do);
       const thisItem = $('<span>').addClass(`${thisClass} list-text`).text(row.to_do);
       const options = $('<span>').addClass('options')
         .append($('<span>').addClass('icon').text('&'))
@@ -58,14 +57,16 @@ $(() => {
       url: '/your-lists/new-item?_method=PUT',
       data: {
         item
-        // user id (which will come from sessions cookies later) LEAVE BLANK FOR NOW
       }
-    }).then((rows) => {
+    })
+    .then((rows) => {
       clearLists();
       renderLists(rows);
       createEvents();
     })
   })
+
+
 
   function createEvents () {
 
