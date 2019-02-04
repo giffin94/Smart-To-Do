@@ -1,0 +1,41 @@
+.profile-grid {
+  display: grid;
+  grid-row-gap: 20px;
+  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-columns: auto 350px auto;
+  grid-template-areas:
+  ". . ."
+  ". profile ."
+  ". . .";
+}
+
+.profile-holder {
+  grid-area: profile;
+  border: 2px solid $pink;
+  background-color: white;
+
+  .profile-title {
+    text-align: center;
+    border-bottom: 2px black solid;
+  }
+  .profile-flexbox {
+      display: flex; /* pretty sure flexbox isn't doing anything */
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    form.profile-form {
+      display: none;
+      height: $box-height;
+      padding: 10px 20%;
+      > * {
+        display: block;
+      }
+    }
+    .profile-data {
+      padding: 10px 20%;
+      height: $box-height;
+    }
+  }
+}
+
+
