@@ -50,7 +50,8 @@ $(() => {
 
   itemForm.on("submit", function(event) {
     event.preventDefault();
-    let item = $(this).serialize();
+    let item = itemForm.children("[name='to-do']").val();
+    console.log(item);
     itemForm[0].reset();
     $.ajax({
       method: 'POST',

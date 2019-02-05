@@ -19,9 +19,8 @@ module.exports = (knex) => {
 
   userRoutes.put('/new-item', (request, response) => {
     const rawInput = request.body;
-    let searchTerm = rawInput.item.replace('to-do=', '');
+    let searchTerm = rawInput.item;
     let userID = request.session.user_id;
-    searchTerm = searchTerm.replace(/%20/g, " ");
 
     queryAPIs.searchYelp(searchTerm)
       .then((data) => {
