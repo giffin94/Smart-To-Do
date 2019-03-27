@@ -1,6 +1,17 @@
 # Welcome to SmartCAT!
+SmartCAT is an auto-categorizing to do list. Simply type in something you would like to do, and SmartCAT's algorithms will categorize your entry for you! 
+
+By querying Wikipedia and Yelp APIs, SmartCAT is able to categorize any entry according to one of these categories:
+* EAT
+* WATCH
+* READ
+* BUY
+
+(Note: SmartCAT's Yelp API query is set to Vancouver, BC.)
 
 ## Screenshots
+![screenshot](/docs/screenshot.jpg)
+![auto-cat](/docs/auto-cat.gif)
 
 ## Installation/Setup
 1. Clone the project to your computer and navigate to the project directory.
@@ -24,3 +35,6 @@
 - pg
 - popper.js 1.14.7
 - yelp-fusion 2.2.1
+
+## Dev Team
+SmartCAT was built in collaboration by [Aedan Giffin](https://github.com/giffin94) and [Shmoo Ritchie](https://github.com/shmoo-tidy).
