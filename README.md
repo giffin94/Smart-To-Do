@@ -9,8 +9,6 @@ By querying Wikipedia and Yelp APIs, SmartCAT is able to categorize any entry ac
 
 (Note: SmartCAT's Yelp API query is set to Vancouver, BC.)
 
-## Screenshots
-![screenshot](/docs/screenshot.jpg)
 ![auto-cat](/docs/auto-cat.gif)
 
 ## Installation/Setup
